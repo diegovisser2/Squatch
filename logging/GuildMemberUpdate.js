@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { Color } = require("../config/constants/other.json")
 const { channelLog } = require("../config/constants/channel.json")
 
 module.exports = (client) => {
@@ -8,7 +7,7 @@ module.exports = (client) => {
 	   if(Old.user.tag !== New.user.tag || Old.displayName !== New.displayName || Old.user.username !== New.user.username){
     	   let embed = new MessageEmbed()
             .setTitle("Member Updated")
-            .setColor(Color)
+            .setColor("GREEN")
             if(Old.user.tag !== New.user.tag){
                 embed.addField("Old User Tag", Old.user.tag)
                 embed.AddField("New User Tag", New.user.tag)

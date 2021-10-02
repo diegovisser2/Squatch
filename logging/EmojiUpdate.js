@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { Color } = require("../config/constants/other.json")
 const { channelLog } = require("../config/constants/channel.json")
 
 module.exports = (client) => {
@@ -7,7 +6,7 @@ module.exports = (client) => {
     let logs = await client.channels.cache.get(channelLog);
         	let embed = new MessageEmbed()
             .setTitle("Emoji Updated")
-            .setColor(Color)
+            .setColor("GREEN")
             .setDescription(`A custom emoji was updated.`)
             if(oldEmoji.name !== newEmoji.name){
                 embed.addField("Old Emoji Name", oldEmoji.name, true)

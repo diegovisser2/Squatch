@@ -94,7 +94,7 @@ client.on("messageCreate", async (message) => {
   } catch (err) {
     message.channel
       .send(`:x: An error occured while running that command. Please contact 
-\`${client.users.cache.get("681179104951009530").tag}\`.`);
+\`${client.users.cache.get("892083694829994046").tag}\`.`);
     console.error(err);
   }
 });

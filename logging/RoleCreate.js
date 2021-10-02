@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { Color } = require("../config/constants/other.json")
 const { channelLog } = require("../config/constants/channel.json")
 
 module.exports = (client) => {

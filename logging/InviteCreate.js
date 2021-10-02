@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { Color } = require("../config/constants/other.json")
 const { channelLog } = require("../config/constants/channel.json")
 
 module.exports = (client) => {
@@ -7,7 +6,7 @@ module.exports = (client) => {
     let logs = await client.channels.cache.get(channelLog);
         	let embed = new MessageEmbed()
             .setTitle("New Invite Created")
-            .setColor(Color)
+            .setColor("GREEN")
             .addField("Invite Code", invite.code, true)
             .addField("Invite URL", invite.url, true) 
             .addField("Invite Channel", invite.channel)

@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { Color } = require("../config/constants/other.json")
 const { channelLog } = require("../config/constants/channel.json")
 
 module.exports = (client) => {
@@ -8,7 +7,7 @@ module.exports = (client) => {
         if(channel.type === "text"){
         	let embed = new MessageEmbed()
             .setTitle("Channel Deleted")
-            .setColor(Color)
+            .setColor("GREEN")
             .setDescription(`A channel was deleted.`)
             .addField("Channel Name", channel.name, true)
             .addField("Channel ID", channel.id, true);
