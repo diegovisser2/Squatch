@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Discord = require("discord.js");
 const { suggestchannel } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json")
 
 module.exports = {
   name: "name",
@@ -20,7 +19,7 @@ module.exports = {
     if (!spoonfeed) return message.channel.send(error).then(msg => msg.delete({ timeout: 10000}))
     const embed = new Discord.MessageEmbed()
       .setTitle(`Spoon Feeding`)
-      .setColor(Color)
+      .setColor("RED")
       .setDescription(`Stop spoonfeeding ${spoonfeed}!`)
       .addField("Why?", `Spoon Feeding is bad as it This leads to poor performance in initial jobs and slow's down their progress. Constantly helping people out with the information they need will stop them  thinking on there own and will force them to be dependent on others`)
       .setFooter(client.user.tag, client.user.avatarURL())

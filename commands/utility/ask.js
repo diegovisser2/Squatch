@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Discord = require("discord.js");
 const { staffrole, adminrole, breakrole } = require("../../config/constants/roles.json");
-const { Color, serverID } = require("../../config/constants/other.json")
 
 module.exports = {
   name: "ask",

@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 require("moment-duration-format");
 const { adminrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color } = require("../../config/constants/other.json");
+const { serverID } = require("../../config/main.json");
 
 module.exports = {
   name: "clearwarns",
@@ -16,17 +16,17 @@ module.exports = {
   run: async (client, msg, args, prefix, command) => {
     msg.delete();
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(`You have to be an administrator to use this command!`);
     let includeuser = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
         `Include the user of whome youy want to clear the warning,please note that if they were previously banned that they will be unbanned.`
       );
     let wrongid123 = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
         `"I could not find a case with this ID, please make sure you filled it in correctly (case senstive)"`
@@ -42,14 +42,14 @@ module.exports = {
     const userBanned = warnsDB.get(user.id).points >= 5;
     if (userBanned) {
       client.guilds.cache
-        .get("809914924381896774")
+        .get(serverID)
         .members.unban(user.id, `${msg.author.tag} - warnings cleared`);
     }
     warnsDB.delete(user.id);
     const clearedWarnsLog = client.channels.cache.get(channelLog);
     const em = new MessageEmbed()
       .setTitle("Warnings cleared")
-      .setColor(Color)
+      .setColor("GREEN")
       .addField("Administrator", `${msg.author.tag} (${msg.author.id})`)
       .addField("User", `${user.tag} (${user.id})`)
       .addField("Unbanned?", userBanned ? "Yes" : "No")
@@ -58,7 +58,7 @@ module.exports = {
     return msg.channel.send({
       embeds: [
         new MessageEmbed()
-          .setColor(Color)
+          .setColor("GREEN")
           .setDescription(
             `I have successfully cleared all warnings on **${user.tag}**!`
           ),

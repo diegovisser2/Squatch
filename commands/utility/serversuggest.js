@@ -5,9 +5,9 @@ const { Color, serverID } = require("../../config/constants/other.json")
 
 
 module.exports = {
-    name: "name",
-    description: "description",
-    aliases: ["alias_a", "alias_b"],
+    name: "serversuggest",
+    description: "server suggestions!",
+    aliases: [],
     category: "utility", 
     clientPermissions: [],
     userPermissions: [],
@@ -16,14 +16,14 @@ module.exports = {
         message.delete()
         const suggestmsg = args.join(" ");
         let noarg = new Discord.MessageEmbed()
-            .setColor(Color)
+            .setColor("RED")
             .setTitle(`Error`)
             .setDescription(`Error`)
             .setFooter(`${message.author.username}`)
             ;
         if (!suggestmsg) return message.channel.send(noarg).then(msg => msg.delete({ timeout: 10000 }))
         let suggestembed = new Discord.MessageEmbed()
-            .setColor(Color)
+            .setColor("GREEN")
             .setTitle(`New Suggestion`)
             .setDescription(`${suggestmsg}`)
             .setFooter(`Suggested by ${message.author.username}!`)

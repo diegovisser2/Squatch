@@ -39,7 +39,7 @@ module.exports = {
             .addField(`**Account Creation:**`, `${userCreationDate}`)
             .addField(`**Captcha Code:**`, `${userCaptchaData[args[0].id].captchaValue}`)
             .addField(`**Role Given:**`, `${roleObj}`)
-            .setColor(Color)
+            .setColor("RED")
             ;
           if (channelLog) args[0].guild.channels.cache.get(channelLog).send(CaptchaLog);
           welcomechannel123.send(`<@&826137014529032273>, Welcome ${member} to the server!`, attachment);

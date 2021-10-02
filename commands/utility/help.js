@@ -3,7 +3,7 @@ const discord = require('discord.js')
 const Discord = require('discord.js')
 const { MessageEmbed } = require ('discord.js')
 const { staffrole, adminrole, breakrole } = require("../../config/constants/roles.json");
-const { Color, serverID } = require("../../config/constants/other.json")
+const { discordlink, serverID } = require("../../config/main.json")
 
 module.exports = {
   name: "help",
@@ -26,29 +26,29 @@ module.exports = {
     let cmdutility = client.commands.filter(command => command.category === "utility").map();
 
     let embedhelp = new MessageEmbed()
-      .setColor(Color)
+      .setColor("ORANGE")
       .setTitle(`${client.user.username} - Help Section!`)
       .setDescription(`Below you can see the current Command Categories\nyou can also see basic server information`)
       .addFields(
         { name: 'Command Categories', value: 'Management\nModeration\nUtility', inline: true },
-		    { name: 'Server information', value: '[Server Invite](https://discord.gg/25ueMUyktb)\n[Server Info](https://discord.com/channels/809914924381896774/810139365074403329)', inline: true },
+		    { name: 'Server information', value: `[Server Invite](${discordlink})`, inline: true },
       )
     ;
 
     let managementembed = new MessageEmbed()
-      .setColor(Color)
+      .setColor("ORANGE")
       .setTitle(`Management Section!`)
     ;
     let miscembed = new MessageEmbed()
-      .setColor(Color)
+      .setColor("ORANGE")
       .setTitle(`Misc Section!`)
     ;
     let modembed = new MessageEmbed()
-      .setColor(Color)
+      .setColor("ORANGE")
       .setTitle(`Moderation Section!`)
     ;
     let utilityembed = new MessageEmbed()
-      .setColor(Color)
+      .setColor("ORANGE")
       .setTitle(`Utility Section!`)
     ;
     cmdmanagement.forEach((cmd) => {

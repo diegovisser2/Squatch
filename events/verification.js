@@ -5,8 +5,7 @@ const path = require('path')
 const Captcha = require("@haileybot/captcha-generator");
 const { roleID } = require("../config/constants/roles.json");
 const { welcomeleave, verificationchannel, captchalogchannel } = require("../config/constants/channel.json");
-const { Version } = require("../config/main.json");
-const { xEmoji } = require("../config/constants/other.json")
+const { Version, xEmoji } = require("../config/main.json");
 
 module.exports = {
     name: "guildMemberAdd",

@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
 const { staffrole, adminrole, breakrole } = require("../../config/constants/roles.json");
-const { Color, serverID } = require("../../config/constants/other.json")
 
 
 module.exports = {
@@ -17,7 +16,7 @@ module.exports = {
         const args = data["args"];
         message.delete();
         let fakeprofile = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("PURPLE")
         .setTitle(`Fake profile`)
         .addFields(`General information`, `**Name:** ${fakerator.names.name()}\n**Country:** ${fakerator.address.country()}\n**City:** ${fakerator.address.city()}\n**Street:** ${fakerator.address.street()}`)
     }

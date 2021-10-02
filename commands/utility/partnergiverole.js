@@ -15,12 +15,12 @@ module.exports = {
     run: (client, msg, data) => {
         const args = data["args"];
         let AlreadyHas = new Discord.MessageEmbed()
-            .setColor(Color)
+            .setColor("RED")
             .setTitle(`Error`)
             .setDescription(`User already has that role`)
             ;
         let Prohibited = new Discord.MessageEmbed()
-            .setColor(Color)
+            .setColor("RED")
             .setTitle(`Prohibited User`)
             .setDescription(`You are prohibited from doing this command`)
             ;

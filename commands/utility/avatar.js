@@ -4,7 +4,6 @@ require("moment-duration-format");
 const Discord = require('discord.js')
 const { MessageEmbed } = require ('discord.js')
 const { staffrole, adminrole, breakrole } = require("../../config/constants/roles.json");
-const { Color, serverID } = require("../../config/constants/other.json")
 
 module.exports = {
   name: "avatar",
@@ -24,7 +23,7 @@ module.exports = {
     server.members.cache.find(m => m.displayName.toLowerCase() == args[0].toLowerCase()) || 
     msg.mentions.members.first() || msg.member;
     const em = new MessageEmbed()
-    .setColor(Color)
+    .setColor("GREEN")
     .setTitle(`Showing ${member.displayName}'s avatar`)
     .setImage(member.user.displayAvatarURL({ format: 'png', dynamic: true }));
     if (msg.member.id != member.id) {

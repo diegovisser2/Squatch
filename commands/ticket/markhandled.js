@@ -1,6 +1,5 @@
-const { Color } = require("../../config/constants/other.json");
 const { supportrole } = require("../../config/constants/roles.json");
-const { ticketCategory } = require("../../config/constants/other.json");
+const { ticketCategory } = require("../../config/constants/channel.json");
 module.exports = {
   name: "mark",
   description: "allows a moderater to mark a certain ticket",
@@ -11,7 +10,7 @@ module.exports = {
   run: async (client, message, data) => {
 
     let Prohibited = new Discord.MessageEmbed()
-    .setColor(Color)
+    .setColor("RED")
     .setTitle(`Error`)
     .setDescription(`You don't have enough permission to do that!`)
 

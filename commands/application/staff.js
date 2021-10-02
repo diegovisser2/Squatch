@@ -1,4 +1,3 @@
-const { Color } = require("../../config/constants/other.json");
 const {
   staffapplicationChannel,
 } = require("../../config/constants/channel.json");
@@ -17,8 +16,7 @@ module.exports = {
       const Application = new Discord.MessageEmbed()
         .setTitle("Application")
         .setDescription("Please check your DM's for the application")
-        .setColor(Color)
-        .setTimestamp();
+        .setColor("GREEN")
       message.channel
         .send({embeds: [Application]})
     }
@@ -26,15 +24,14 @@ module.exports = {
     const cancel = new Discord.MessageEmbed()
       .setTitle("cancelled")
       .setDescription("You have successfully cancelled this application")
-      .setColor(Color)
-      .setTimestamp();
-    const success = new Discord.MessageEmbed()
+      .setColor("RED")
+
+      const success = new Discord.MessageEmbed()
       .setTitle("Success")
       .setDescription(
         "You have successfully submitted your application\nIf you don't recieve a response then most likely you have been denied"
       )
-      .setColor(Color)
-      .setTimestamp();
+      .setColor("GREEN")
     const questions = [
       "How old are you? (Tell the truth...)",
       "Do you have 2FA enabled?",

@@ -16,21 +16,21 @@ module.exports = {
   run: async (client, msg, args, prefix, command) => {
     msg.delete();
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(`You have to be an administrator to use this command!`);
     let insertID = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Please insert the ID of the case you want to clear`);
     let includeuser = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
-        `Include the user of whome youy want to clear the warning,please note that if they were previously banned that they will be unbanned.`
+        `Please include the user in which you want to unban, please note if they were banned they will be unbanned`
       );
     let wrongid123 = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
         `"I could not find a case with this ID, please make sure you filled it in correctly (case senstive)"`
@@ -61,7 +61,7 @@ module.exports = {
     const clearedWarnsLog = client.channels.cache.get(channelLog);
     const em = new MessageEmbed()
       .setTitle("Warning cleared")
-      .setColor(Color)
+      .setColor("GREEN")
       .addField("Adminstrator", `${msg.author.tag} (${msg.author.id})`)
       .addField("User", `${user.tag} (${user.id})`)
       .addField("Case ID", `\`${caseID}\``)
@@ -74,7 +74,7 @@ module.exports = {
       .send({
         embeds: [
           new MessageEmbed()
-            .setColor(Color)
+            .setColor("GREEN")
             .setDescription(
               `I have successfully cleared warning **${caseID}** from **${user.tag}**!`
             ),

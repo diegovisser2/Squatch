@@ -30,7 +30,7 @@ module.exports = {
                 const powerData = data.data.find(m => m.component.name == 'Power Supply');
                 const gpuData = data.data.find(m => m.component.name == 'GPU');
                 const embed = new Discord.MessageEmbed()
-                    .setColor(Color)
+                    .setColor("PURPLE")
                     .addField('CPU', `[${cpuData.selection.name}](${cpuData.selection.link})`, true)
                     .addField('Motherboard', `[${mbData.selection.name}](${mbData.selection.link})`, true)
                     .addField('Graphics Card', `[${gpuData.selection.name}](${gpuData.selection.link})`, true)

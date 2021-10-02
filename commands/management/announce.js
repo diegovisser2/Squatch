@@ -5,7 +5,6 @@ const Discord = require("discord.js");
 require("moment-duration-format");
 const { adminrole } = require("../../config/constants/roles.json");
 const { Announcement } = require("../../config/constants/channel.json");
-const { Color } = require("../../config/constants/other.json");
 
 module.exports = {
   name: "announce",
@@ -16,11 +15,11 @@ module.exports = {
   userPermissions: [],
   run: async (client, message, data) => {
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(`You have to be an administrator to use this command!`);
     let Description = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
         "Make sure to include a description for the announcement! (Must be longer than 5 words)"
@@ -31,7 +30,7 @@ module.exports = {
     await announceChan.messages.fetch();
     if (data.length < 5) return message.reply(Description);
     const AnnDesc = data.join(" ").trim();
-    const em = new MessageEmbed().setColor(Color).setDescription(AnnDesc);
+    const em = new MessageEmbed().setColor("PURPLE").setDescription(AnnDesc);
     await announceChan.send({ content: "<@&865728505811304494>", embeds: [em] })
   },
 };

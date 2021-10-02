@@ -16,11 +16,11 @@ module.exports = {
   userPermissions: [],
   run: async (client, message, data) => {
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(`You have to be an bot developer to use this command!`);
     let Description = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
         "Make sure to include a description for the announcement! (Must be longer than 5 words)"
@@ -31,7 +31,7 @@ module.exports = {
     await announceChan.messages.fetch();
     if (data.length < 5) return message.reply(Description);
     const AnnDesc = data.join(" ").trim();
-    const em = new MessageEmbed().setColor(Color).setDescription(AnnDesc);
+    const em = new MessageEmbed().setColor("PURPLE").setDescription(AnnDesc);
     await announceChan.send({ content: "<@&865728505811304494>", embeds: [em] })
   },
 };

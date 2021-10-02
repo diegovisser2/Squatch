@@ -1,5 +1,4 @@
-const { Color } = require("../../config/constants/other.json");
-const { ticketCategory } = require("../../config/constants/other.json");
+const { ticketCategory } = require("../../config/constants/channel.json");
 const { Client, Message } = require('discord.js')
 const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
@@ -52,7 +51,7 @@ module.exports = {
 
       message.channel.send({ embeds:[viewchannel] }).then(msg => msg.delete({ timeout: 10000 }))
       channel.send(welcome).then(msg => {
-        msg.react("<:bsod:811223704406327386>")
+        msg.react("<:envelope:811223704406327386>")
         const filter = (reaction, user) => user.id === message.author.id && reaction.emoji.id === "811223704406327386"
         msg.awaitReactions(filter, { max: 1 }).then(async (cls) => {
           let delete1 = new Discord.MessageEmbed()

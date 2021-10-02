@@ -1,6 +1,5 @@
 const { Message, Client, MessageAttachment} = require('discord.js')
-const { Color } = require("../../config/constants/other.json");
-const { ticketCategory } = require("../../config/constants/other.json");
+const { ticketCategory } = require("../../config/constants/channel.json");
 const fs = require('fs')
 const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
@@ -15,7 +14,7 @@ module.exports = {
   run: async (client, message, data) => {
     message.delete();
     let delete1 = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Deletion`)
         .setDescription(`Ticket Will be deleted in 5 seconds`)
     ;

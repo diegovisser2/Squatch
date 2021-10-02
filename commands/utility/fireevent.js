@@ -1,5 +1,5 @@
-const { botdev } = require("../../config/constants/roles.json")
-const { xEmoji } = require("../../config/constants/other.json")
+const { xEmoji } = require("../../config/main.json")
+const { adminrole } = require("../../config/constants/roles.json");
 module.exports = {
 	name: "emitevent",
 	aliases: ["emulateevent"],
@@ -7,12 +7,12 @@ module.exports = {
 	description: "Manually emit an event.",
 	run: (client, msg, data) => {
 		const args = data["args"];
-		if (!message.member.roles.cache.has(botdev)) return message.channel.send(`${xEmoji} Only bot developers can use this command!`)
+		if (!message.member.roles.cache.has(adminrole)) return message.channel.send(`${xEmoji} Only Administrators can use this command!`)
 		try {
 			message.client.emit(data.args[0], data.args.slice(1))
 		} catch(e){
 			console.error(e)
-			return message.channel.send(":x: An error occured.")
+			return message.channel.send(`${xEmoji} An error occured.`)
 		}
 		console.log(data.args, data.args.slice(1))
 		message.channel.send(":white_check_mark: Successfully emitted event.")

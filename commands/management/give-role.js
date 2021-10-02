@@ -13,19 +13,19 @@ module.exports = {
   run: (client, message, data) => {
     message.delete();
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(`You are prohibited from doing this command`);
     let AlreadyHas = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`User already has that role`);
     let Error = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Error - Use format giverole <member> <role>`);
     let RoleError = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Role doesnt exist`);
     if (!message.member.roles.cache.has(adminrole)) return Prohibited;

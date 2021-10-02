@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const { MessageEmbed } = require('discord.js');
 require("moment-duration-format");
 const { staffrole, adminrole, breakrole } = require("../../config/constants/roles.json");
-const { Color, serverID } = require("../../config/constants/other.json")
+const { serverID } = require("../../config/main.json")
 const { requestbreak } = require("../../config/constants/channel.json");
 
 module.exports = {
@@ -17,67 +17,67 @@ module.exports = {
     run: (message, data) => {
     message.delete();
     let Prohibited = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Prohibited User`)
         .setDescription(`You have to be a staff member to use this command!`)
     ;
     let stateatime = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("Please state for how long you will be on break (e.g 2Days)")
     ;
     let stateareason = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("Please state why you are going on break (e.g \"I have to learn for a test\")")
     ;
     let successfullyenteredit = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("GREEN")
         .setTitle(`Success!`)
         .setDescription("Your break request has been added to the queue, please wait for it be approved before actually going on break!")
     ;
     let alreadyononemate = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("You are already on break or got one pending, please end your break first or wait for it to be approved or denied!")
     ;
     let statewhojesus = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("I'd appreciate it if you'd tell me who's break you want to approve...")
     ;
     let idisincorrectjesuschrist = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("The ID you submitted either is not in the database or is not pending a break approval!")
     ;
     let statewhotodenyjesus = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("I'd appreciate it if you'd tell me who's break you want to deny...")
     ;
     let idisincorrectdenyjesuschrist = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("The ID you submitted either is not in the database or is not pending a break approval!")
     ;
     let youarentonabreak = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription("You are not currently on break!")
     ;
     let iendedyourbreak = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Welcome back!`)
         .setDescription("I have ended your break, welcome back!")
     ;
     let usageonthiscommand123 = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Request a break`)
         .setDescription(`Request <time (no spaces: 2days)> <reason (away from home on vacation)>`)
     ;
     let youhavetobeinacertainchannelpatternup = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription(`I'm sorry but you have to be in <#${requestbreak}> to use this!`)
     ;
@@ -118,12 +118,12 @@ module.exports = {
         client.guilds.cache.get(serverID).member(thatRequested).roles.add(breakRole);
         const em = new MessageEmbed()
         .setTitle(`Approved ${client.users.cache.get(thatRequested).username}'s Break Request`)
-        .setColor(Color)
+        .setColor("GREEN")
         ;
         breakQueue.send(em);
         const confirmEm = new MessageEmbed()
         .setTitle("Your break request has been approved!")
-        .setColor(Color)
+        .setColor("GREEN")
         ;
         return client.users.cache.get(thatRequested).send(confirmEm);
     } else if (action && action == 'deny' && adminrole) {
@@ -133,13 +133,13 @@ module.exports = {
         breaksDB.set(thatRequested, { ID: thatRequested, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A' });
         const em = new MessageEmbed()
         .setTitle(`Denied ${client.users.cache.get(thatRequested).username}'s Break Request`)
-        .setColor(Color)
+        .setColor("RED")
         breakQueue.send(em);
-        const confirmEm = new MessageEmbed()
+        const deniedEm = new MessageEmbed()
         .setTitle("Your break request has been denied!")
-        .setColor(Color)
+        .setColor("RED")
         ;
-        return client.users.cache.get(thatRequested).send(confirmEm);
+        return client.users.cache.get(thatRequested).send(deniedEm);
     } else if (action && action == 'end') {
         if (breaksDB.get(msg.author.id).status != 'approved') return msg.channel.send({ embeds: [youarentonabreak] });
         breaksDB.set(msg.author.id, { ID: msg.author.id, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A' });
