@@ -12,6 +12,11 @@ To add your bots token, you can add the token at /config/credentials.env To chan
 # Pull requests
 if you decided to help out with the bot and you found a few lines of code that could cause a problem or think you have a better way of doing something then you're more then welcome to create a pull request and show the code you would like to change and explain the difference
 
+# todo
+Fix the webscraping which can be found at /events/pcbuildhelp.js
+Change the ids for userinfo.js and serverinfo.js at /commands/utility/ so that it can work in every server
+fix the ids for the tickets so you can close the ticket /commands/tickets/
+
 # Issues
 if you found any issues that are related to the bot, then you can create an issue request
 
