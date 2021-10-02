@@ -6,7 +6,7 @@ const { MessageEmbed } = require("discord.js");
 require("moment-duration-format");
 const { staffrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
+const { serverID } = require("../../config/main.json");
 
 module.exports = {
   name: "ban",
@@ -17,25 +17,25 @@ module.exports = {
   userPermissions: [],
   run: async (client, msg, args) => {
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(
         `You have to be in the moderation team to be able to use this command!`
       );
     let validuser = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid user`);
     let stateareason = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid reason to ban the user`);
     let cantbanyourself = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You cant ban yourself`);
     let samerankorhigher = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You can't ban that user due to role hierarchy`);
     const warnsDB = new Enmap({ name: "warns" });
@@ -53,11 +53,11 @@ module.exports = {
     let reason = args.join(" ").replace(args[0], "").trim();
     if (!reason)
       return msg.reply(
-        "Please insert the reason you want to ban this user for!"
+        stateareason
       );
     if (cannedMsgs.has(reason)) reason = cannedMsgs.get(reason);
     if (moderator.id == toWarn.id)
-      return msg.reply("You may not ban yourself dumby!");
+      return msg.reply(cantbanyourself);
     if (
       server.member(moderator.id).roles.highest.rawPosition <=
       (server.member(toWarn.id)
@@ -65,7 +65,7 @@ module.exports = {
         : 0)
     )
       return msg.reply(
-        "You may not ban someone with the same rank or a rank higher as yourself!"
+        samerankorhigher
       );
     const warnLogs = server.channels.cache.get(channelLog);
     function makeid(length) {
@@ -83,7 +83,7 @@ module.exports = {
     const caseID = makeid(10);
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
-      .setColor("RED")
+      .setColor("GREEN")
       .setauthor(`https://img.icons8.com/fluency/2x/restriction-shield.png`)
       .addField("Member", `${toWarn.tag} (${toWarn.id})`)
       .addField("Moderator", `${moderator.user.tag} (${moderator.id})`)
@@ -92,7 +92,7 @@ module.exports = {
     await warnLogs.send(em);
     const emUser = new MessageEmbed()
       .setTitle("Banned")
-      .setColor("RED")
+      .setColor("GREEN")
       .setThumbnail("")
       .setDescription(`You were banned from **server** for ${reason}!`)
       .addField("Case ID", `\`${caseID}\``)
@@ -100,7 +100,7 @@ module.exports = {
     await toWarn.send(emUser).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully banned **${toWarn.tag}**.`)
-      .setColor("RED")
+      .setColor("GREEN")
     await msg.channel.send({ embed: [emChan] });
     warnsDB.set(
       toWarn.id,

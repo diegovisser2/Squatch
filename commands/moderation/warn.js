@@ -6,7 +6,7 @@ const { MessageEmbed } = require("discord.js");
 const makeID = require("../../events/caseid.js");
 const { staffrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
+const { serverID } = require("../../config/main.json");
 
 module.exports = {
   name: "warn",
@@ -19,25 +19,25 @@ module.exports = {
     const warnsDB = new Enmap({ name: "warns" });
     const cannedMsgs = new Enmap({ name: "cannedMsgs" });
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(
         `You have to be in the moderation team to be able to use this command!`
       );
     let validuser = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid user`);
     let stateareason = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid reason to warn the user`);
     let cantwarnyourself = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You cant warn yourself`);
     let samerankorhigher = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You can't warn that user due to role hierarchy`);
     const server = client.guilds.cache.get(serverID);
@@ -85,7 +85,7 @@ module.exports = {
     const Server = msg.member.guild.name;
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
-      .setColor(Color)
+      .setColor("GREEN")
       .addField("Member", `${toWarn.user.tag} (${toWarn.id})`)
       .addField("Moderator", `${moderator.user.tag} (${moderator.id})`)
       .addField("Reason", `\`(warned) - ${reason}\``)
@@ -93,7 +93,7 @@ module.exports = {
     await warnLogs.send({embeds: [em]});
     const emUser = new MessageEmbed()
       .setTitle("Warned")
-      .setColor(Color)
+      .setColor("RED")
       .setDescription(
         `You were warned in **${Server}** for ${reason}, please don't do it again!`
       )
@@ -101,7 +101,7 @@ module.exports = {
     await toWarn.send({embeds: [emUser]}).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully warned **${toWarn.user.tag}**.`)
-      .setColor(Color);
+      .setColor("GREEN");
     await msg.channel
       .send({embeds: [emChan]})
     warnsDB.set(

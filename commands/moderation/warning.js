@@ -6,7 +6,6 @@ const { MessageEmbed } = require("discord.js");
 const makeID = require("../../events/caseid.js");
 const { staffrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
 
 module.exports = {
   name: "warning",
@@ -17,23 +16,23 @@ module.exports = {
   run: async (client, msg, args, prefix, command) => {
     msg.delete();
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(
         `You have to be in the moderation team to be able to use this command!`
       );
     let enabledms = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error!`)
       .setDescription(
         `Please enable your dms with this server to that I can send you the information you requested!`
       );
     let caseidincorrect = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Please do ${prefix}warning (caseid) (user id)`);
     let warninginfo = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("GREEN")
       .setTitle(`Success`)
       .setDescription(`I have sent you a dm with your requested information!`);
     const warnsDB = new Enmap({ name: "warns" });
@@ -44,14 +43,14 @@ module.exports = {
     if (user.id == msg.member.id) {
       const em = new Discord.MessageEmbed()
         .setTitle(caseID)
-        .setColor(Color)
+        .setColor("GREEN")
         .addField("Reason", warnsDB.get(user.id).warns[caseID].reason)
         .addField("Date", warnsDB.get(user.id).warns[caseID].date);
       await msg.member.send(em).catch((err) => msg.reply(enabledms));
       await msg.channel.send({
         embeds: [
           new Discord.MessageEmbed()
-            .setColor(Color)
+            .setColor("GREEN")
             .setDescription(
               `I have sent you a dm with your requested information!`
             ),

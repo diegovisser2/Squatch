@@ -10,7 +10,7 @@ const {
   adminrole,
 } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
+const { serverID } = require("../../config/main.json");
 
 module.exports = {
   name: "mute",
@@ -26,23 +26,23 @@ module.exports = {
         `You have to be in the moderation team to be able to use this command!`
       );
     let validuser = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid user`);
     let stateareason = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid reason to mute the user`);
     let cantmuteyourself = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You cant mute yourself`);
     let samerankorhigher = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You can't mute that user due to role hierarchy`);
     let durationtime = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(
         `How long would you like to mute the user for (write 0 if you wish to permanently mute the user)`
@@ -144,7 +144,7 @@ module.exports = {
       .setTitle("Muted")
       .setColor("ORANGE")
       .setDescription(
-        `You were muted in **JavaScript Universe** for ${reason}, please don't do it again!`
+        `You were muted in **${server}** for ${reason}, please don't do it again!`
       )
       .addField(
         "Duration",

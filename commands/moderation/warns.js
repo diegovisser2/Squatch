@@ -6,7 +6,6 @@ const { MessageEmbed } = require("discord.js");
 const makeID = require("../../events/caseid.js");
 const { staffrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
 
 module.exports = {
   name: "warns",
@@ -17,13 +16,13 @@ module.exports = {
   run: async (client, msg, args, prefix, command) => {
     msg.delete();
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(
         `You have to be in the moderation team to look at other people's warnings`
       );
     let enabledms = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error!`)
       .setDescription(
         `Please enable your dms with this server to that I can send you the information you requested!`
@@ -35,7 +34,7 @@ module.exports = {
     if (user.id == msg.member.id) {
       const em = new Discord.MessageEmbed()
         .setTitle("Warnings")
-        .setColor(Color)
+        .setColor("GREEN")
         .setDescription(
           `\`${
             Object.keys(warnsDB.get(user.id).warns).length != 0
@@ -47,7 +46,7 @@ module.exports = {
       await msg.channel.send({
         embeds: [
           new Discord.MessageEmbed()
-            .setColor(Color)
+            .setColor("GREEN")
             .setDescription(
               `I have sent you a dm with your requested information!`
             ),
@@ -57,7 +56,7 @@ module.exports = {
       if (!msg.member.roles.cache.has(staffrole)) return msg.reply(Prohibited);
       const em = new Discord.MessageEmbed()
         .setTitle("Warnings")
-        .setColor(Color)
+        .setColor("GREEN")
         .setDescription(
           `\`${
             Object.keys(warnsDB.get(user.id).warns).length != 0
@@ -68,7 +67,7 @@ module.exports = {
       await msg.member.send(em).catch((err) => msg.reply(enabledms));
       await msg.channel.send({
         embeds: [
-          new MessageEmbed().setColor(Color).setDescription(warninginfo),
+          new MessageEmbed().setColor("RED").setDescription(warninginfo),
         ],
       });
     }

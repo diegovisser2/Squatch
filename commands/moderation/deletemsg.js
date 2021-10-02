@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
 const { staffrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
+const { serverID } = require("../../config/main.json");
 
 module.exports = {
   name: "deletemsg",
@@ -15,25 +15,23 @@ module.exports = {
     const server = client.guilds.cache.get(serverID);
     const warnLogs = server.channels.cache.get(channelLog);
     let invalidlink = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(":x: That isn't a valid message link! :x:");
+      .setColor("RED")
+      .setDescription("That isn't a valid message link!");
     let cantindmmessages = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(":x: I can't delete messages in DMs! :x:");
+      .setColor("RED")
+      .setDescription("I can't delete messages in DMs!");
     let otherserverisbad = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(":x: I can't delete messages in other servers! :x:");
+      .setColor("RED")
+      .setDescription("I can't delete messages in other servers!");
     let successfullydeleted = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(
-        ":white_check_mark: Successfully deleted! :white_check_mark:"
-      );
+      .setColor("RED")
+      .setDescription(":white_check_mark: Successfully deleted! :white_check_mark:");
     let cantfindthechannel = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(":x: I couldn't find that channel :x:");
+      .setColor("RED")
+      .setDescription("I couldn't find that channel");
     let cantfindthemessage = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(":x: I couldn't find that message :x:");
+      .setColor("RED")
+      .setDescription("I couldn't find that message");
     if (!args[0].includes("https://discord.com/channels/"))
       return message.channel.send({embeds: [invalidlink]});
     if (args[0].includes("@me")) return message.channel.send({embeds: [cantindmmessages]});

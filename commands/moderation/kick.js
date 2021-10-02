@@ -6,7 +6,7 @@ const { MessageEmbed } = require("discord.js");
 const makeID = require("../../events/caseid.js");
 const { staffrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color, serverID } = require("../../config/constants/other.json");
+const { serverID } = require("../../config/main.json");
 
 module.exports = {
   name: "kick",
@@ -19,25 +19,25 @@ module.exports = {
     const warnsDB = new Enmap({ name: "warns" });
     const cannedMsgs = new Enmap({ name: "cannedMsgs" });
     let Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Prohibited User`)
       .setDescription(
         `You have to be in the moderation team to be able to use this command!`
       );
     let validuser = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid user`);
     let stateareason = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`Mention a valid reason to kick the user`);
     let cantkickyourself = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You cant kick yourself`);
     let samerankorhigher = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle(`Error`)
       .setDescription(`You can't kick that user due to role hierarchy`);
     const server = client.guilds.cache.get(serverID);
@@ -81,7 +81,7 @@ module.exports = {
     const caseID = makeid(10);
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
-      .setColor(Color)
+      .setColor("GREEN")
       .addField("Member", `${toWarn.user.tag} (${toWarn.id})`)
       .addField("Moderator", `${moderator.user.tag} (${moderator.id})`)
       .addField("Reason", `\`(kicked) - ${reason}\``)
@@ -90,7 +90,7 @@ module.exports = {
     const Server = msg.member.guild.name;
     const emUser = new MessageEmbed()
       .setTitle("Kicked")
-      .setColor(Color)
+      .setColor("RED")
       .setDescription(
         `You were kicked from ${Server} for ${reason}, please don't do it again!`
       )
