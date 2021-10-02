@@ -17,6 +17,7 @@ Fix the webscraping which can be found at /events/pcbuildhelp.js
 Change the ids for userinfo.js and serverinfo.js at /commands/utility/ so that it can work in every server
 fix the ids for the tickets so you can close the ticket /commands/tickets/
 also make sure the jointocreate.js, giveaway.js and topic.js are working as best as possible in /toworkon/
+make sure the give-role command is restricted to the users's role - so they cant give themselfs a higher role
 
 # Issues
 if you found any issues that are related to the bot, then you can create an issue request
