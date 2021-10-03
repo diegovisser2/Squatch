@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: "./config/credentials.env" });
 // Discord bot stuff
 const Discord = require("discord.js");
-const Levels = require('discord-xp')
 const client = new Discord.Client({
   intents: 32767, // guild memebers, guild messages, and DM intents
   presence: require("./config/presence.json"),
