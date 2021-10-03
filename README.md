@@ -20,7 +20,7 @@ also make sure the jointocreate.js, giveaway.js and topic.js are working as best
 make sure the give-role command is restricted to the users's role - so they cant give themselfs a higher role
 
 # Issues
-if you found any issues that are related to the bot, then you can create an issue request
+if you found any issues that are related to the bot, then you can create an [issue](https://github.com/MrXez/Squatch/issues)
 
 # How to install the bot
 If you don't have nodejs then install node first.
@@ -39,7 +39,7 @@ Change all of the necessary information e.g. channel ids and bot's token
 
 git clone https://github.com/MrXez/Squatch
 
-cd Jack-of-all-trades
+cd Squatch
 
 npm install
 
