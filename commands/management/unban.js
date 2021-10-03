@@ -3,7 +3,6 @@ const Enmap = require("enmap");
 require("moment-duration-format");
 const { adminrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color } = require("../../config/constants/other.json");
 
 module.exports = {
   name: "unban",

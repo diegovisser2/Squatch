@@ -5,7 +5,6 @@ const Discord = require("discord.js");
 require("moment-duration-format");
 const { adminrole } = require("../../config/constants/roles.json");
 const { Announcement } = require("../../config/constants/channel.json");
-const { Color } = require("../../config/constants/other.json");
 
 module.exports = {
   name: "changelog",

@@ -1,7 +1,6 @@
 const { pcbuildhelp } = require("../config/constants/api.json")
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const { Color } = require("../config/constants/other.json")
 
 
 module.exports = {

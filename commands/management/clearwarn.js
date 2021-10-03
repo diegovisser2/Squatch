@@ -5,7 +5,6 @@ const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const { adminrole } = require("../../config/constants/roles.json");
 const { channelLog } = require("../../config/constants/channel.json");
-const { Color } = require("../../config/constants/other.json");
 
 module.exports = {
   name: "clearwarn",
