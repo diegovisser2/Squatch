@@ -1,7 +1,6 @@
 const jointocreatemap = new Map();
 const { partnermanagerrole } = require("../config/constants/roles.json")
 const { jointocreatechannel, jointocreatecategory } = require("../config/constants/channel.json")
-const { Color } = require("../config/constants/other.json")
 const { serverID } = require("../config/constants/channel.json")
 
 module.exports = function (client) {

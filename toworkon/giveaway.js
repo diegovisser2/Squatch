@@ -24,7 +24,7 @@ function toTime(seconds) {
 }
 function EmbedProhibited(message) {
     let Prohibited = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Prohibited User`)
         .setDescription(`You are prohibited from doing this command`)
         ;
@@ -33,7 +33,7 @@ function EmbedProhibited(message) {
 
 function EmbedNeedchannel(message) {
     let Needchannel = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription(`I need the channel to start the giveaway in.`)
         ;
@@ -42,7 +42,7 @@ function EmbedNeedchannel(message) {
 
 function EmbedNeedtime(message) {
     let Needtime = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription(`I need to know the giveaway time.`)
         ;
@@ -51,7 +51,7 @@ function EmbedNeedtime(message) {
 
 function EmbedNeedreward(message) {
     let Needreward = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription(`I need the reward of the giveaway.`)
         ;
@@ -60,7 +60,7 @@ function EmbedNeedreward(message) {
 
 function EmbedNeed1day(message) {
     let Need1day = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription(`I can only do giveaways shorter than 1 day.`)
         ;
@@ -69,7 +69,7 @@ function EmbedNeed1day(message) {
 
 function EmbedNeedvalidtime(message) {
     let Needvalidtime = new Discord.MessageEmbed()
-        .setColor(Color)
+        .setColor("RED")
         .setTitle(`Error`)
         .setDescription(`I need a valid time.`)
         ;
