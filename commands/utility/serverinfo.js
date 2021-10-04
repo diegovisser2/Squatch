@@ -16,7 +16,7 @@ module.exports = {
     const regions = {
 
     };
-    const boosterEmoji = '<:booster:817062258781454347>';
+    const boosterEmoji = '<:diamonds:>';
     const boostersCount = server.premiumSubscriptionCount;
     const boosterLevel = server.premiumTier;
     const serverOptions = server.features.join(', ').replace(/_/g, ' ').split(', ').join(' | ').toProperCase();

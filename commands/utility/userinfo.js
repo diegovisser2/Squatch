@@ -13,10 +13,10 @@ module.exports = {
     const args = data["args"];
     const server = msg.guild;
     const statusMoji = {
-      dnd: '<:dnd:817030828290867231>',
-      offline: '<:offline:817030793142337536>',
-      online: '<:online:817030844584951879>',
-      idle: '<:idle:817030811853389926>'
+      dnd: '<:red_circle:>',
+      offline: '<:black_circle:>',
+      online: '<:green_circle:>',
+      idle: '<:yellow_circle:>'
     }
     const statusName = {
       dnd: 'Do not Disturb',
@@ -25,9 +25,9 @@ module.exports = {
       idle: 'Idle'
     }
     const device = {
-      mobile: '<:mobile:817032273463476224>',
+      mobile: '<:telephone:>',
       browser: '<:browser:817032290731032597>',
-      desktop: '<:desktopicon:817032252390899752>'
+      desktop: '<:desktop:>'
     }
     let member;
     if (args[0]) member = server.members.cache.get(args[0]) ||
