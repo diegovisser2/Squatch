@@ -1,4 +1,6 @@
 const Canvas = require('canvas');
+const { welcomeleave } = require("../config/constants/channel.json")
+const { welcomerole } = require("../config/constants/roles.json")
 
 module.exports = {
   name: 'guildMemberAdd',
@@ -46,7 +48,7 @@ module.exports = {
         .addField('**Role Given:**', `${roleObj}`)
         .setColor('ORANGE');
       if (channelLog) member.guild.channels.cache.get(channelLog).send(CaptchaLog);
-      welcomechannel123.send(`<@&>, Welcome ${member} to the server!`, attachment);
+      welcomechannel123.send(`<@&${welcomerole}>, Welcome ${member} to the server!`, attachment);
     }
   },
 };

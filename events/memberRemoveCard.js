@@ -1,5 +1,5 @@
 const Canvas = require('canvas');
-const { welcomechannel123 } = require('../config/constants/channel.json');
+const { welcomeleave } = require("../config/constants/channel.json")
 
 module.exports = {
   name: 'guildMemberRemove',
