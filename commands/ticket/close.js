@@ -16,7 +16,7 @@ module.exports = {
     let delete1 = new Discord.MessageEmbed()
         .setColor("RED")
         .setTitle(`Deletion`)
-        .setDescription(`Ticket Will be deleted in 5 seconds`)
+        .setDescription(`The ticket will be deleted in 5 seconds`)
     ;
     if(message.channel.parentID !== ticketCategory) {
       const m = await message.channel.send({ embeds: [delete1] });

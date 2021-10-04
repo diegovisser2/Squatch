@@ -14,12 +14,12 @@ module.exports = {
 
     message.delete();
     let welcome = new Discord.MessageEmbed()
-    .setColor(Color)
+    .setColor("GREEN")
     .setTitle(`Welcome ${message.author.username}`)
-    .setDescription(`Support will be with you shortly.\nTo close this ticket react with <:bsod:811223704406327386>`)
+    .setDescription(`Support will be with you shortly.\nTo close this ticket please react with <:envelope:>`)
       
     let onechannel = new Discord.MessageEmbed()
-    .setColor(Color)
+    .setColor("GREEN")
     .setTitle(`Error`)
     .setDescription(`You already have a ticket open`)
 
@@ -39,23 +39,23 @@ module.exports = {
           allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'ADD_REACTIONS', 'ATTACH_FILES']
         },
         {
-          id: message.guild.roles.cache.find(role => role.name === "Support"),
+          id: message.guild.roles.cache.find(role => role.id === ticketsupportrole),
           allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]
         }
       ]
     }).then(async channel => {
       let viewchannel = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("GREEN")
       .setTitle(`Ticket`)
       .setDescription(`You can view your ticket at <#${channel.id}>`)
 
       message.channel.send({ embeds:[viewchannel] }).then(msg => msg.delete({ timeout: 10000 }))
       channel.send(welcome).then(msg => {
-        msg.react("<:envelope:811223704406327386>")
-        const filter = (reaction, user) => user.id === message.author.id && reaction.emoji.id === "811223704406327386"
+        msg.react("<:envelope:>")
+        const filter = (reaction, user) => user.id === message.author.id && reaction.emoji.name === ":envelope:"
         msg.awaitReactions(filter, { max: 1 }).then(async (cls) => {
           let delete1 = new Discord.MessageEmbed()
-          .setColor(Color)
+          .setColor("RED")
           .setTitle(`Deletion`)
           .setDescription(`Ticket Will be deleted in 5 seconds`)
 

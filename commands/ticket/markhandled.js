@@ -14,6 +14,11 @@ module.exports = {
     .setTitle(`Error`)
     .setDescription(`You don't have enough permission to do that!`)
 
+    let Claimedticket = new Discord.MessageEmbed()
+    .setColor("RED")
+    .setTitle(`Success`)
+    .setDescription(`${message.author.username} claimed this ticket!`)
+
     if(!msg.member.roles.cache.has(supportrole)) {
       const m = await message.channel.send({ embeds: [Prohibited] });
       return setTimeout(() => m.delete(), 5000);
@@ -25,6 +30,8 @@ module.exports = {
     }
 
     message.channel.setName(message.channel.name + " - 🚩 - " + message.author.username);
+
+    message.channel.send({ embeds: [Claimedticket] })
 
   }
 }
