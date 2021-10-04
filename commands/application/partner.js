@@ -1,65 +1,66 @@
-const { partnermanagerrole } = require("../../config/constants/roles.json");
-const { partnerChannel } = require("../../config/constants/channel.json");
-const Discord = require("discord.js");
+const Discord = require('discord.js');
+const { partnermanagerrole } = require('../../config/constants/roles.json');
+const { partnerChannel } = require('../../config/constants/channel.json');
+
 module.exports = {
-  name: "partner",
-  description: "",
-  category: "application",
-  usage: "[accept|deny]",
+  name: 'partner',
+  description: '',
+  category: 'application',
+  usage: '[accept|deny]',
   run: async (message, data) => {
-    if (message.channel.type !== "dm") {
+    if (message.channel.type !== 'dm') {
       message.delete();
       const Application = new Discord.MessageEmbed()
-        .setTitle("Application")
+        .setTitle('Application')
         .setDescription("Please check your DM's for the application");
       message.channel
-        .send({embeds: [Application]})
+        .send({ embeds: [Application] });
     }
     const filter1 = (m) => m.author.id === message.author.id;
     const cancel = new Discord.MessageEmbed()
-      .setTitle("Cancelled")
-      .setDescription("You successfully cancelled this application");
+      .setTitle('Cancelled')
+      .setDescription('You successfully cancelled this application');
     const outOfTime = new Discord.MessageEmbed()
-      .setTitle("Cancelled")
+      .setTitle('Cancelled')
       .setDescription(
-        "You were inactive for too long, so this form was cancelled."
+        'You were inactive for too long, so this form was cancelled.',
       );
     const tooManyChars = new Discord.MessageEmbed()
-      .setTitle("Cancelled")
+      .setTitle('Cancelled')
       .setDescription(
-        "Your response was too long, so this form was cancelled."
+        'Your response was too long, so this form was cancelled.',
       );
     const success = new Discord.MessageEmbed()
-      .setTitle("Success")
+      .setTitle('Success')
       .setDescription(
-        "You successfully submitted your application\nIf you don't recieve a response then most likely you have been denied"
+        "You successfully submitted your application\nIf you don't recieve a response then most likely you have been denied",
       );
     const questions = [
-      "How many members does your server have?",
-      "How many Bots does your server have?",
-      "Is your server NSFW?",
+      'How many members does your server have?',
+      'How many Bots does your server have?',
+      'Is your server NSFW?',
       "Does your server break discord's TOS in any way?",
-      "Does your server name or image contain vulgar or inappropriate terms/images",
-      "Is your server meme orientated?",
-      "Does your server promote anything illegal?",
-      "How active is the owner of the server?",
-      "What is your server about?",
-      "How old is your server?",
-      "Send a permanent invite link to your server",
-      "How visible is your partnership channel",
-      "If you would like to say something else you can type it here",
+      'Does your server name or image contain vulgar or inappropriate terms/images',
+      'Is your server meme orientated?',
+      'Does your server promote anything illegal?',
+      'How active is the owner of the server?',
+      'What is your server about?',
+      'How old is your server?',
+      'Send a permanent invite link to your server',
+      'How visible is your partnership channel',
+      'If you would like to say something else you can type it here',
     ];
 
     const questionEmbed = new Discord.MessageEmbed();
     responses = [];
-    if (data.args[0] == "defaultvalues") {
+    if (data.args[0] == 'defaultvalues') {
       for (i = 0; i < questions.length; i++) {
-        responses.push("default value lol");
+        responses.push('default value lol');
       }
     }
-    let exitFlag = false,
-      skip = responses.length > 0;
-    const author = message.author;
+    let exitFlag = false;
+    const skip = responses.length > 0;
+    const { author } = message;
     for (i = 0; i < questions.length; i++) {
       if (skip) break;
       questionEmbed.setTitle(`Question ${i + 1}`);
@@ -69,15 +70,15 @@ module.exports = {
         .awaitMessages(filter1, {
           time: 5 * 60000,
           max: 1,
-          errors: ["time"],
+          errors: ['time'],
         })
         .then((resp) => {
-          if (resp.first().content.toLowerCase() === "cancel") {
-            author.send({embeds: [cancel]});
+          if (resp.first().content.toLowerCase() === 'cancel') {
+            author.send({ embeds: [cancel] });
             exitFlag = true;
           }
-          if (responses.join("").length + resp.first().content.length > 4096) {
-            author.send({embeds: [tooManyChars]});
+          if (responses.join('').length + resp.first().content.length > 4096) {
+            author.send({ embeds: [tooManyChars] });
             exitFlag = true;
           }
           responses.push(resp.first());
@@ -92,9 +93,9 @@ module.exports = {
     if (exitFlag) return;
     message.author.send(success).then(() => {
       const dataEmbed = new Discord.MessageEmbed().setTitle(
-        `Application Submitted by ${message.author.tag}`
+        `Application Submitted by ${message.author.tag}`,
       );
-      body = "";
+      body = '';
       for (i = 0; i < responses.length; i++) {
         body += `${questions[i]} ${responses[i]}\n`;
       }
@@ -105,29 +106,29 @@ module.exports = {
         .send({ embed: dataEmbed, split: true });
     });
     if (!data.args.length) return;
-    if (data.args[0] === "decline") {
-      if (!message.member.roles.cache.has(partnermanagerrole))
+    if (data.args[0] === 'decline') {
+      if (!message.member.roles.cache.has(partnermanagerrole)) {
         return message.channel.send(
-          "you dont' have permission to use this command"
+          "you dont' have permission to use this command",
         );
-      let User = message.mentions.users.first();
-      if (!User)
-        return message.channel.send("Please provide a user for me to decline");
+      }
+      const User = message.mentions.users.first();
+      if (!User) return message.channel.send('Please provide a user for me to decline');
       User.send(
-        "Your application to " + message.guild.name + " got declined..."
+        `Your application to ${message.guild.name} got declined...`,
       );
     }
 
-    if (data.args[0] === "accept") {
-      if (!message.member.roles.cache.has(partnermanagerrole))
+    if (data.args[0] === 'accept') {
+      if (!message.member.roles.cache.has(partnermanagerrole)) {
         return message.channel.send(
-          "you dont' have permission to use this command"
+          "you dont' have permission to use this command",
         );
-      let User = message.mentions.users.first();
-      if (!User)
-        return message.channel.send("Please provide a user for me to accept");
+      }
+      const User = message.mentions.users.first();
+      if (!User) return message.channel.send('Please provide a user for me to accept');
       User.send(
-        ":tada: Your application to " + message.guild.name + " got accepted!"
+        `:tada: Your application to ${message.guild.name} got accepted!`,
       );
     }
   },

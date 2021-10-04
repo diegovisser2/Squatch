@@ -1,5 +1,6 @@
-const eventLogger = require('../logging')
-const Discord = ('discord.js')
+const eventLogger = require('../logging');
+
+const Discord = ('discord.js');
 // const client = new Discord.Client({
 //   intents: 4610, // guild memebers, guild messages, and DM intents
 // })
@@ -7,10 +8,10 @@ const Discord = ('discord.js')
 // just added a param to the event loader
 
 module.exports = {
-  name: "ready",
+  name: 'ready',
   runOnce: true,
   call(client) {
-    console.log("Successfully logged in!");
-    eventLogger(client)
-  }
+    console.log('Successfully logged in!');
+    eventLogger(client);
+  },
 };
