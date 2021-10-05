@@ -2,7 +2,7 @@ const moment = require('moment');
 const Enmap = require('enmap');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const makeID = require('../../events/caseid.js');
+const nanoid = require('nanoid')
 require('moment-duration-format');
 const {
   staffrole,
@@ -10,7 +10,7 @@ const {
   adminrole,
 } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
-const { serverID } = require('../../config/main.json');
+const { serverID, Appealserver } = require('../../config/main.json');
 
 module.exports = {
   name: 'mute',
@@ -106,17 +106,6 @@ module.exports = {
         );
     }
     const warnLogs = server.channels.cache.get(channelLog);
-    function makeid(length) {
-      let result = '';
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength),
-        );
-      }
-      return result;
-    }
     mutedDB.set(toWarn.id, {
       roles: msg.guild
         .member(toWarn.id)
@@ -129,7 +118,7 @@ module.exports = {
       mutedAt: Date.now(),
       id: toWarn.id,
     });
-    const caseID = makeid(10);
+    const caseID = nanoid(15);
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('ORANGE')

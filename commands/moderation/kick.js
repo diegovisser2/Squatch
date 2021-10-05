@@ -3,10 +3,10 @@ const Enmap = require('enmap');
 require('moment-duration-format');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const makeID = require('../../events/caseid.js');
+const nanoid = require('nanoid')
 const { staffrole } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
-const { serverID } = require('../../config/main.json');
+const { serverID, Appealserver } = require('../../config/main.json');
 
 module.exports = {
   name: 'kick',
@@ -60,27 +60,16 @@ module.exports = {
     if (cannedMsgs.has(reason)) reason = cannedMsgs.get(reason);
     if (moderator.id == toWarn.id) return msg.reply(cantkickyourself);
     if (
-      server.member(moderator.id).roles.highest.rawPosition
-      <= (server.member(toWarn.id)
-        ? server.member(toWarn.id).roles.highest.rawPosition
+      server.members.cache.get(moderator.id).roles.highest.rawPosition
+      <= (server.members.cache.get(toWarn.id)
+        ? server.members.cache.get(toWarn.id).roles.highest.rawPosition
         : 0)
     ) {
       return msg
         .reply(samerankorhigher);
     }
     const warnLogs = server.channels.cache.get(channelLog);
-    function makeid(length) {
-      let result = '';
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength),
-        );
-      }
-      return result;
-    }
-    const caseID = makeid(10);
+    const caseID = nanoid(15);
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('GREEN')
@@ -94,7 +83,7 @@ module.exports = {
       .setTitle('Kicked')
       .setColor('RED')
       .setDescription(
-        `You were kicked from ${Server} for ${reason}, please don't do it again!`,
+        `You were kicked from ${server} for ${reason}, please don't do it again!`,
       )
       .addField('Case ID', `\`${caseID}\``);
     await toWarn.send(emUser).catch((err) => err);

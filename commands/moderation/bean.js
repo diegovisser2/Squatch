@@ -1,12 +1,11 @@
-const moment = require('moment');
 const Enmap = require('enmap');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const makeID = require('../../events/caseid.js');
+const nanoid = require('nanoid')
 require('moment-duration-format');
 const { staffrole } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
-const { serverID } = require('../../config/main.json');
+const { serverID, Appealserver } = require('../../config/main.json');
 
 module.exports = {
   name: 'bean',
@@ -54,25 +53,13 @@ module.exports = {
     }
     if (cannedMsgs.has(reason)) reason = cannedMsgs.get(reason);
     const warnLogs = server.channels.cache.get(channelLog);
-    function makeid(length) {
-      let result = '';
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        msg;
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength),
-        );
-      }
-      return result;
-    }
-    const caseID = makeid(10);
+    const caseID = nanoid(15);
     const emUser = new MessageEmbed()
       .setTitle('Beaned')
       .setColor('GREEN')
       .setDescription(`You were beaned from **${Server}** for ${reason}!`)
       .addField('Case ID', `\`${caseID}\``)
-      .addField('Bean Appeal Link', '[Click Me](https://bit.ly/39aewzz)');
+      .addField('Bean Appeal Link', '[Click Me]()');
     await toWarn.send({ embeds: [emUser] }).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully beaned **${toWarn.tag}**.`)

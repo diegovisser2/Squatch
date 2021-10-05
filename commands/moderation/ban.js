@@ -2,11 +2,11 @@ const moment = require('moment');
 const Enmap = require('enmap');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const makeID = require('../../events/caseid.js');
+const nanoid = require('nanoid')
 require('moment-duration-format');
 const { staffrole } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
-const { serverID } = require('../../config/main.json');
+const { serverID, Appealserver } = require('../../config/main.json');
 
 module.exports = {
   name: 'ban',
@@ -58,9 +58,9 @@ module.exports = {
     if (cannedMsgs.has(reason)) reason = cannedMsgs.get(reason);
     if (moderator.id == toWarn.id) return msg.reply(cantbanyourself);
     if (
-      server.member(moderator.id).roles.highest.rawPosition
-      <= (server.member(toWarn.id)
-        ? server.member(toWarn.id).roles.highest.rawPosition
+      server.members.cache.get(moderator.id).roles.highest.rawPosition
+      <= (server.members.cache.get(toWarn.id)
+        ? server.members.cache.get(toWarn.id).roles.highest.rawPosition
         : 0)
     ) {
       return msg.reply(
@@ -68,22 +68,10 @@ module.exports = {
       );
     }
     const warnLogs = server.channels.cache.get(channelLog);
-    function makeid(length) {
-      let result = '';
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength),
-        );
-      }
-      return result;
-    }
-    const caseID = makeid(10);
+    const caseID = nanoid(15);
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('GREEN')
-      .setauthor('https://img.icons8.com/fluency/2x/restriction-shield.png')
       .addField('Member', `${toWarn.tag} (${toWarn.id})`)
       .addField('Moderator', `${moderator.user.tag} (${moderator.id})`)
       .addField('Reason', `\`(banned) - ${reason}\``)
@@ -92,10 +80,10 @@ module.exports = {
     const emUser = new MessageEmbed()
       .setTitle('Banned')
       .setColor('GREEN')
-      .setThumbnail('')
-      .setDescription(`You were banned from **server** for ${reason}!`)
+      .setAuthor('https://img.icons8.com/fluency/2x/restriction-shield.png')
+      .setDescription(`You were banned from **${server}** for ${reason}!`)
       .addField('Case ID', `\`${caseID}\``)
-      .addField('Ban Appeal Server', '[Join Me]()');
+      .addField('Ban Appeal Server', `[Join Me](${Appealserver})`);
     await toWarn.send(emUser).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully banned **${toWarn.tag}**.`)

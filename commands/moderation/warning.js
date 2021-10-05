@@ -1,11 +1,8 @@
-const moment = require('moment');
 const Enmap = require('enmap');
 require('moment-duration-format');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const makeID = require('../../events/caseid.js');
 const { staffrole } = require('../../config/constants/roles.json');
-const { channelLog } = require('../../config/constants/channel.json');
 
 module.exports = {
   name: 'warning',
@@ -60,7 +57,7 @@ module.exports = {
       if (!msg.member.roles.cache.has(staffrole)) return msg.reply(Prohibited);
       const em = new Discord.MessageEmbed()
         .setTitle(caseID)
-        .setColor(Color)
+        .setColor("ORANGE")
         .addField('Reason', warnsDB.get(user.id).warns[caseID].reason)
         .addField('Moderator ID', warnsDB.get(user.id).warns[caseID].moderator)
         .addField('Date', warnsDB.get(user.id).warns[caseID].date);
