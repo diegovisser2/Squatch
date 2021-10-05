@@ -1,7 +1,7 @@
 const Enmap = require('enmap');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const nanoid = require('nanoid')
+const { customAlphabet } = require('nanoid')
 require('moment-duration-format');
 const { staffrole } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
@@ -53,7 +53,8 @@ module.exports = {
     }
     if (cannedMsgs.has(reason)) reason = cannedMsgs.get(reason);
     const warnLogs = server.channels.cache.get(channelLog);
-    const caseID = nanoid(15);
+    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 10)
+    const caseID = nanoid();
     const emUser = new MessageEmbed()
       .setTitle('Beaned')
       .setColor('GREEN')

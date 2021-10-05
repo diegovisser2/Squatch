@@ -2,7 +2,7 @@ const moment = require('moment');
 const Enmap = require('enmap');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const nanoid = require('nanoid')
+const { customAlphabet } = require('nanoid')
 require('moment-duration-format');
 const { staffrole } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
@@ -68,7 +68,8 @@ module.exports = {
       );
     }
     const warnLogs = server.channels.cache.get(channelLog);
-    const caseID = nanoid(15);
+    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 10)
+    const caseID = nanoid();
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('GREEN')
@@ -76,7 +77,7 @@ module.exports = {
       .addField('Moderator', `${moderator.user.tag} (${moderator.id})`)
       .addField('Reason', `\`(banned) - ${reason}\``)
       .setFooter(`By: ${moderator.user.tag} (${moderator.id})`);
-    await warnLogs.send(em);
+    await warnLogs.send({ embeds: [em] });
     const emUser = new MessageEmbed()
       .setTitle('Banned')
       .setColor('GREEN')
@@ -84,11 +85,11 @@ module.exports = {
       .setDescription(`You were banned from **${server}** for ${reason}!`)
       .addField('Case ID', `\`${caseID}\``)
       .addField('Ban Appeal Server', `[Join Me](${Appealserver})`);
-    await toWarn.send(emUser).catch((err) => err);
+    await toWarn.send({ embeds: [emUser] }).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully banned **${toWarn.tag}**.`)
       .setColor('GREEN');
-    await msg.channel.send({ embed: [emChan] });
+    await msg.channel.send({ embeds: [emChan] });
     warnsDB.set(
       toWarn.id,
       {

@@ -2,7 +2,7 @@ const moment = require('moment');
 const Enmap = require('enmap');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const nanoid = require('nanoid')
+const { customAlphabet } = require('nanoid')
 require('moment-duration-format');
 const {
   staffrole,
@@ -20,7 +20,7 @@ module.exports = {
   description: 'Mute a member',
   run: async (client, msg, args, prefix, command) => {
     const Prohibited = new Discord.MessageEmbed()
-      .setColor(Color)
+      .setColor("RED")
       .setTitle('Prohibited User')
       .setDescription(
         'You have to be in the moderation team to be able to use this command!',
@@ -118,7 +118,8 @@ module.exports = {
       mutedAt: Date.now(),
       id: toWarn.id,
     });
-    const caseID = nanoid(15);
+    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 10)
+    const caseID = nanoid();
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('ORANGE')

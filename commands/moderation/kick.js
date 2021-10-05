@@ -3,7 +3,7 @@ const Enmap = require('enmap');
 require('moment-duration-format');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const nanoid = require('nanoid')
+const { customAlphabet } = require('nanoid')
 const { staffrole } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
 const { serverID, Appealserver } = require('../../config/main.json');
@@ -69,7 +69,8 @@ module.exports = {
         .reply(samerankorhigher);
     }
     const warnLogs = server.channels.cache.get(channelLog);
-    const caseID = nanoid(15);
+    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 10)
+    const caseID = nanoid();
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('GREEN')
@@ -89,7 +90,7 @@ module.exports = {
     await toWarn.send(emUser).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully kicked **${toWarn.user.tag}**.`)
-      .setColor(Color);
+      .setColor("GREEN");
     await msg.channel
       .send({ embeds: [emChan] });
     warnsDB.set(
