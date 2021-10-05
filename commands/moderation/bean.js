@@ -57,10 +57,11 @@ module.exports = {
     const caseID = nanoid();
     const emUser = new MessageEmbed()
       .setTitle('Beaned')
+      .setAuthor('https://i.imgur.com/BSzzbNJ.jpg')
       .setColor('GREEN')
       .setDescription(`You were beaned from **${Server}** for ${reason}!`)
       .addField('Case ID', `\`${caseID}\``)
-      .addField('Bean Appeal Link', '[Click Me]()');
+      .addField('Bean Appeal Link', '[Join Me]()');
     await toWarn.send({ embeds: [emUser] }).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully beaned **${toWarn.tag}**.`)

@@ -133,11 +133,11 @@ module.exports = {
           .format('d [days], h [hours], m [minutes] [and] s [seconds]'),
       )
       .setFooter(`By: ${moderator.user.tag} (${moderator.id})`)
-      .setTimestamp();
     await warnLogs.send({ embeds: [em] });
     const emUser = new MessageEmbed()
       .setTitle('Muted')
       .setColor('ORANGE')
+      .setAuthor('https://i.imgur.com/wNUUjmG.png')
       .setDescription(
         `You were muted in **${server}** for ${reason}, please don't do it again!`,
       )
@@ -148,12 +148,10 @@ module.exports = {
           .format('d [days], h [hours], m [minutes] [and] s [seconds]'),
       )
       .addField('Case ID', `\`${caseID}\``)
-      .setTimestamp();
     await toWarn.send({ embeds: [emUser] }).catch((err) => err);
     const emChan = new MessageEmbed()
       .setDescription(`You have succesfully muted **${toWarn.user.tag}**.`)
       .setColor('ORANGE')
-      .setTimestamp();
     await msg.channel
       .send({ embeds: [emChan] });
     warnsDB.set(

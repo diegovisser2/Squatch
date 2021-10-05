@@ -25,7 +25,7 @@ module.exports = {
       .setDescription(
         'Include the user of whome youy want to clear the warning,please note that if they were previously banned that they will be unbanned.',
       );
-    const wrongid123 = new Discord.MessageEmbed()
+    const wrongid = new Discord.MessageEmbed()
       .setColor('RED')
       .setTitle('Error')
       .setDescription(
@@ -53,7 +53,6 @@ module.exports = {
       .addField('Administrator', `${msg.author.tag} (${msg.author.id})`)
       .addField('User', `${user.tag} (${user.id})`)
       .addField('Unbanned?', userBanned ? 'Yes' : 'No')
-      .setFooter(`By: ${msg.author.tag}`);
     await clearedWarnsLog.send({ embeds: [em] });
     return msg.channel.send({
       embeds: [

@@ -76,12 +76,11 @@ module.exports = {
       .addField('Member', `${toWarn.tag} (${toWarn.id})`)
       .addField('Moderator', `${moderator.user.tag} (${moderator.id})`)
       .addField('Reason', `\`(banned) - ${reason}\``)
-      .setFooter(`By: ${moderator.user.tag} (${moderator.id})`);
     await warnLogs.send({ embeds: [em] });
     const emUser = new MessageEmbed()
       .setTitle('Banned')
       .setColor('GREEN')
-      .setAuthor('https://img.icons8.com/fluency/2x/restriction-shield.png')
+      .setAuthor('https://i.imgur.com/BSzzbNJ.jpg')
       .setDescription(`You were banned from **${server}** for ${reason}!`)
       .addField('Case ID', `\`${caseID}\``)
       .addField('Ban Appeal Server', `[Join Me](${Appealserver})`);

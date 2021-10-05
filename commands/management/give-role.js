@@ -49,7 +49,7 @@ module.exports = {
 
       const embed = new MessageEmbed()
         .setTitle('Role successfully recieved')
-        .setColor(Color)
+        .setColor("GREEN")
         .setDescription(
           `**Moderator:** ${message.author}\n**Role Recieved:** ${roleName}\n**Member:** ${member.user}`,
         );

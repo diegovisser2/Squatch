@@ -3,7 +3,7 @@ const Enmap = require('enmap');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 require('moment-duration-format');
-const { adminrole } = require('../../config/constants/roles.json');
+const { adminrole, roleID } = require('../../config/constants/roles.json');
 const { Announcement } = require('../../config/constants/channel.json');
 
 module.exports = {
@@ -30,6 +30,6 @@ module.exports = {
     if (data.length < 5) return message.reply(Description);
     const AnnDesc = data.join(' ').trim();
     const em = new MessageEmbed().setColor('PURPLE').setDescription(AnnDesc);
-    await announceChan.send({ content: '<@&865728505811304494>', embeds: [em] });
+    await announceChan.send({ content: `<@&${roleID}>`, embeds: [em] });
   },
 };

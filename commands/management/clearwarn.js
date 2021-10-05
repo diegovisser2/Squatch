@@ -67,7 +67,6 @@ module.exports = {
       .addField('Case Points', `\`${parseInt(casePoints).toLocaleString()}\``)
       .addField('Case Reason', `\`${caseReason}\``)
       .addField('Unbanned?', userBanned ? 'Yes' : 'No')
-      .setFooter(`By: ${msg.author.tag}`);
     await clearedWarnsLog.send({ embeds: [em] });
     return msg.channel
       .send({

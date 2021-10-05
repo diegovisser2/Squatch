@@ -74,10 +74,10 @@ module.exports = {
     const em = new MessageEmbed()
       .setTitle(`Case - ${caseID}`)
       .setColor('GREEN')
+      .setAuthor('https://i.imgur.com/3fxf41t.jpg')
       .addField('Member', `${toWarn.user.tag} (${toWarn.id})`)
       .addField('Moderator', `${moderator.user.tag} (${moderator.id})`)
       .addField('Reason', `\`(kicked) - ${reason}\``)
-      .setFooter(`By: ${moderator.user.tag} (${moderator.id})`);
     await warnLogs.send(em);
     const Server = msg.member.guild.name;
     const emUser = new MessageEmbed()

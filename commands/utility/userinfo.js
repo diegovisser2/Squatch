@@ -26,7 +26,7 @@ module.exports = {
     };
     const device = {
       mobile: '<:telephone:>',
-      browser: '<:browser:817032290731032597>',
+      browser: '<:computer:>',
       desktop: '<:desktop:>',
     };
     let member;
@@ -42,7 +42,7 @@ module.exports = {
       const em = new MessageEmbed()
         .setAuthor(`${member.displayName}'s information`, member.user.displayAvatarURL({ format: 'png', dynamic: true }))
         .setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true }))
-        .setColor(color)
+        .setColor("PURPLE")
         .addField('Username', member.user.username, true)
         .addField('Tag', member.user.tag, true)
         .addField(`Created At [${moment(member.user.createdTimestamp).fromNow()}]`, moment(member.user.createdTimestamp).format('LLL'))

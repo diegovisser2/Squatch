@@ -81,7 +81,6 @@ module.exports = {
       .addField('Member', `${toWarn.user.tag} (${toWarn.id})`)
       .addField('Moderator', `${moderator.user.tag} (${moderator.id})`)
       .addField('Reason', `\`(warned) - ${reason}\``)
-      .setFooter(`By: ${moderator.user.tag} (${moderator.id})`);
     await warnLogs.send({ embeds: [em] });
     const emUser = new MessageEmbed()
       .setTitle('Warned')
