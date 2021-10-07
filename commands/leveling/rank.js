@@ -14,10 +14,10 @@ module.exports = {
     Levels.setURL(process.env.mongo_url);
 
     let target;
-    if (message.mentions.users.first()) {
-      target = message.mentions.users.first();
+    if (msg.mentions.users.first()) {
+      target = msg.mentions.users.first();
     } else {
-      target = message.author;
+      target = msg.author;
     }
 
     const ub = await theuser.findOne({
@@ -43,10 +43,10 @@ module.exports = {
       repBadges = "diamond";
     }
 
-    let messages;
+    let msg;
 
     if (ub) {
-      messages = ub.Messages;
+      msg = ub.Messages;
     } else {
       messages = 0;
     }
@@ -89,7 +89,7 @@ module.exports = {
         "rank.png"
       );
 
-      message.channel.send(attachment);
+      msg.channel.send(attachment);
     } else {
       let image = await new Canvas.RankCard()
         .setAddon("xp", true)
@@ -112,7 +112,7 @@ module.exports = {
         "rank.png"
       );
 
-      message.channel.send(attachment);
+      msg.channel.send(attachment);
     }
   },
 };

@@ -11,14 +11,14 @@ module.exports = {
   userPermissions: [],
   run: async (client, msg, args) => {
     let target;
-    if (message.mentions.users.first()) {
-      target = message.mentions.users.first();
+    if (msg.mentions.users.first()) {
+      target = msg.mentions.users.first();
     } else {
-      target = message.author;
+      target = msg.author;
     }
 
     const msgDoc = await msgModel.findOne({
-      guildID: message.guild.id,
+      guildID: msg.guild.id,
       memberID: target.id,
     });
 
@@ -59,6 +59,6 @@ module.exports = {
       .setColor('ORANGE')
       .setTitle("Total amount of Messages")
       .setDescription(`${target} has \`${msg}\` messages!\r\n\r\n${msgBadges}`);
-    message.channel.send({ embeds: [messagesEmbed] });
+    msg.channel.send({ embeds: [messagesEmbed] });
   },
 };

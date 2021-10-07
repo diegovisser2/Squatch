@@ -10,31 +10,31 @@ module.exports = {
     Levels.setURL(process.env.mongo_url);
 
     let member;
-    if (message.mentions.users.first()) {
-      member = message.mentions.users.first();
+    if (msg.mentions.users.first()) {
+      member = msg.mentions.users.first();
     } else {
-      member = message.author;
+      member = msg.author;
     }
 
     let argsLevel;
-    if (message.mentions.users.first()) {
+    if (msg.mentions.users.first()) {
       argsLevel = args[1];
     } else {
       argsLevel = args[0];
     }
 
     if (!argsLevel) {
-      return message.channel.send("Please provide the level you want to set");
+      return msg.channel.send("Please provide the level you want to set");
     }
 
-    const user = await Levels.fetch(member.id, message.guild.id);
+    const user = await Levels.fetch(member.id, msg.guild.id);
 
     if (user.level > argsLevel) {
-      Levels.setLevel(member.id, message.guild.id, `-${argsLevel}`);
+      Levels.setLevel(member.id, msg.guild.id, `-${argsLevel}`);
     } else {
-      Levels.setLevel(member.id, message.guild.id, argsLevel);
+      Levels.setLevel(member.id, msg.guild.id, argsLevel);
     }
 
-    message.channel.send(`Set ${member}'s level to ${argsLevel}`);
+    msg.channel.send(`Set ${member}'s level to ${argsLevel}`);
   },
 };

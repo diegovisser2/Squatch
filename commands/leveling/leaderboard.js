@@ -11,7 +11,7 @@ module.exports = {
   run: async (client, msg, args) => {
     Levels.setURL(process.env.mongo_url);
 
-    const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10); // We grab top 10 users with most xp in the current server.
+    const rawLeaderboard = await Levels.fetchLeaderboard(msg.guild.id, 10); // We grab top 10 users with most xp in the current server.
 
     if (rawLeaderboard.length < 1)
       return reply(
@@ -30,8 +30,8 @@ module.exports = {
 
     let lbEmbed = new MessageEmbed()
       .setColor('ORANGE')
-      .setTitle(`${message.guild.name}'s leaderboard`)
+      .setTitle(`${msg.guild.name}'s leaderboard`)
       .addField(lb.join("\n\n"), `\u200b`);
-    message.channel.send({ embeds: [lbEmbed] });
+    msg.channel.send({ embeds: [lbEmbed] });
   },
 };
