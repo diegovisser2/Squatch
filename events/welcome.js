@@ -15,8 +15,8 @@ module.exports = (client) => {
             "",
             ""
         ]
-        var randomtextmessage = Math.floor(Math.random() * welcometext.length);
+        var randomizedmessage = Math.floor(Math.random() * welcometext.length);
         const channel = member.guild.channels.cache.get(welcomechannel);
-        channel.send({ embeds: [welcometext[randomtextmessage]]});
+        channel.send({ embeds: [welcometext[randomizedmessage]]});
     });
 };

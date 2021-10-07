@@ -65,7 +65,7 @@ module.exports = {
       if (skip) break;
       questionEmbed.setTitle(`Question ${i + 1}`);
       questionEmbed.setDescription(questions[i]);
-      const m = await author.send({ embed: questionEmbed });
+      const m = await author.send({ embeds: questionEmbed });
       await m.channel
         .awaitMessages(filter1, {
           time: 5 * 60000,
