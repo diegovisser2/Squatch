@@ -33,7 +33,7 @@ module.exports = {
     const em = new MessageEmbed()
       .setTitle(server.name)
       .setThumbnail(server.iconURL({ format: 'png', dynamic: true }))
-      .setColor(color)
+      .setColor("PURPLE")
       .addField('Owner', server.owner.user.tag)
       .addField('ID', server.id)
       .addField('Staff Count', staffCount)
@@ -44,6 +44,6 @@ module.exports = {
       .addField(`Members [${memberCount}]`, `👤 ${humanCount} | 🤖 ${botsCount}`)
       .addField(`Channels [${server.channels.cache.size.toLocaleString()}]`, `⌨️ ${textChannels} | 🗣️ ${voiceChannels} | 📂 ${categories}`)
       .addField('Options', server.features.length > 0 ? serverOptions : 'None');
-    msg.channel.send(em);
+    msg.channel.send({ embeds: [em] });
   },
 };

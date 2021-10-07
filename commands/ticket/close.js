@@ -21,7 +21,6 @@ module.exports = {
       const m = await message.channel.send({ embeds: [delete1] });
       return setTimeout(() => m.delete(), 5000);
     }
-
     setTimeout(() => {
       message.channel.delete();
     }, 5000);

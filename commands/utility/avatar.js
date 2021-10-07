@@ -31,6 +31,6 @@ module.exports = {
     if (msg.member.id != member.id) {
       em.setFooter(`Requested by ${msg.member.displayName}`);
     }
-    msg.channel.send(em);
+    msg.channel.send({ embeds: [em] });
   },
 };

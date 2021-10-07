@@ -24,6 +24,6 @@ module.exports = {
       return setTimeout(() => m.delete(), 5000);
     }
 
-    message.channel.send(pythonembed);
+    message.channel.send({ embeds: [pythonembed] });
   },
 };

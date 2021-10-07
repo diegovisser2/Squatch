@@ -60,12 +60,12 @@ module.exports = {
       const em = new MessageEmbed()
         .setAuthor(`${user.username}'s information`, user.displayAvatarURL({ format: 'png', dynamic: true }))
         .setThumbnail(user.displayAvatarURL({ format: 'png', dynamic: true }))
-        .setColor(color)
+        .setColor("PURPLE")
         .addField('Username', user.username, true)
         .addField('Tag', user.tag, true)
         .addField(`Created At [${moment(user.createdTimestamp).fromNow()}]`, moment(user.createdTimestamp).format('LLL'))
         .setFooter(`Requested by ${msg.member.displayName}`);
-      msg.channel.send(em);
+      msg.channel.send({ embeds: [em] });
     }
   },
 };

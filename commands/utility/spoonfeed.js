@@ -22,7 +22,7 @@ module.exports = {
       .setDescription(`Stop spoonfeeding ${spoonfeed}!`)
       .addField('Why?', 'Spoon Feeding is bad as it This leads to poor performance in initial jobs and slow\'s down their progress. Constantly helping people out with the information they need will stop them  thinking on there own and will force them to be dependent on others')
       .setFooter(client.user.tag, client.user.avatarURL());
-    message.channel.send(embed);
+    message.channel.send({ embeds: [embed] });
   },
 
 };

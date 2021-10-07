@@ -14,10 +14,11 @@ module.exports = {
   userPermissions: [],
   run: (client, msg, data) => {
     const { args } = data;
-    message.delete();
+    msg.delete();
     const fakeprofile = new Discord.MessageEmbed()
       .setColor('PURPLE')
       .setTitle('Fake profile')
       .addFields('General information', `**Name:** ${fakerator.names.name()}\n**Country:** ${fakerator.address.country()}\n**City:** ${fakerator.address.city()}\n**Street:** ${fakerator.address.street()}`);
+      message.channel.send({ embeds: [fakeprofile] });
   },
 };

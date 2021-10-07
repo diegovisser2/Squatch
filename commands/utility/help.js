@@ -131,9 +131,9 @@ module.exports = {
       .addField('Category', `${ChangeLatter(cmd.category)}`)
       .addField('Description', `${cmd.description}`);
     if (cmd) {
-      return msg.channel.send(cmdhelp).then((msg) => msg.delete({ timeout: 50000 }));
+      return msg.channel.send({ embeds: [cmdhelp] }).then((msg) => msg.delete({ timeout: 50000 }));
     }
-    return msg.channel.send(embedhelp).then((msg) => msg.delete({ timeout: 50000 }));
+    return msg.channel.send({ embeds: [embedhelp] }).then((msg) => msg.delete({ timeout: 50000 }));
 
     // End
   },
