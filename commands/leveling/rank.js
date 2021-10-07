@@ -4,10 +4,13 @@ Discord = require("discord.js");
 const theuser = require("../../models/user");
 
 module.exports = {
-  name: "rank",
-  description: "Show your level card",
-  botPerms: ["ATTACH_FILES"],
-  async execute(client, message, args) {
+  name: 'rank',
+  description: 'list your current rank in the server',
+  aliases: ['ranks', 'level'],
+  category: 'leveling',
+  clientPermissions: [],
+  userPermissions: [],
+  run: async (client, msg, args) => {
     Levels.setURL(process.env.mongo_url);
 
     let target;

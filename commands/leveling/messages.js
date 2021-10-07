@@ -3,11 +3,13 @@ const msgModel = require("../../models/messages");
 const user = require("../../models/user");
 
 module.exports = {
-  name: "messages",
-  aliases: ["msg"],
-  description: "Show your messages count in the server!",
-  botPerms: ["EMBED_LINKS", "USE_EXTERNAL_EMOJIS"],
-  async execute(client, message, args) {
+  name: 'message',
+  description: 'list the amount of messages you have in the server',
+  aliases: ['msg', 'messages'],
+  category: 'leveling',
+  clientPermissions: [],
+  userPermissions: [],
+  run: async (client, msg, args) => {
     let target;
     if (message.mentions.users.first()) {
       target = message.mentions.users.first();

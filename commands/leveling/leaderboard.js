@@ -5,7 +5,7 @@ module.exports = {
   name: 'leaderboard',
   description: 'leaderboard',
   aliases: ['lb'],
-  category: 'moderation',
+  category: 'leveling',
   clientPermissions: [],
   userPermissions: [],
   run: async (client, msg, args) => {

@@ -1,9 +1,12 @@
 const Levels = require("discord-xp");
 module.exports = {
-  name: "setlevel",
-  description: "Change a member's level",
-  userPerms: ["MANAGE_GUILD"],
-  async execute(client, message, args) {
+  name: 'setlevel',
+  description: 'sets a level for the selected user',
+  aliases: ['set level'],
+  category: 'leveling',
+  clientPermissions: [],
+  userPermissions: [],
+  run: async (client, msg, args) => {
     Levels.setURL(process.env.mongo_url);
 
     let member;
