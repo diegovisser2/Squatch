@@ -5,7 +5,7 @@ const path = require('path');
 const Captcha = require('@haileybot/captcha-generator');
 const { roleID } = require('../config/constants/roles.json');
 const { welcomeleave, verificationchannel, captchalogchannel } = require('../config/constants/channel.json');
-const { Version, xEmoji } = require('../config/main.json');
+const { Version, xEmoji, prefix } = require('../config/main.json');
 
 module.exports = {
   name: 'guildMemberAdd',
@@ -22,7 +22,7 @@ module.exports = {
         .attachments.first());
       const Server = args[0].guild.name;
       const e0 = new discord.MessageEmbed().setTitle('Verification').setDescription().setFooter(`${Version}`);
-      const e1 = new discord.MessageEmbed(e0).setDescription(`Welcome To **${Server}**\nPlease enter the captcha code below correctly to get verified in **${Server}**`).addField('**Why did you recieve this?**', 'You recieved this captcha because we would to verify that you aren\'t an automated bot and to protect the server from malicious attacks\nMake sure you type the captcha code in this conversation').addField('Error', `If youre unable to read the image, then you can go to the verification channel selected by the server administrators, then you can run the command ${Prefix}verify`);
+      const e1 = new discord.MessageEmbed(e0).setDescription(`Welcome To **${Server}**\nPlease enter the captcha code below correctly to get verified in **${Server}**`).addField('**Why did you recieve this?**', 'You recieved this captcha because we would to verify that you aren\'t an automated bot and to protect the server from malicious attacks\nMake sure you type the captcha code in this conversation').addField('Error', `If youre unable to read the image, then you can go to the verification channel selected by the server administrators, then you can run the command ${prefix}verify`);
       const e2 = new discord.MessageEmbed(e0).setDescription('You\'ve entered the captcha incorrectly.');
       const e3 = new discord.MessageEmbed(e0).setDescription(`You have verified yourself in **${Server}**! and you successfully recieved a role! You now have access to the server`);
       try {
@@ -44,7 +44,7 @@ module.exports = {
             vchannel = client.channels.cache.get(verificationchannel);
             const enableDMEmb = new Discord.MessageEmbed()
               .setTitle('Enable DM\'s')
-              .setDescription(`please enable DMs then run the command ${Prefix}verify`)
+              .setDescription(`please enable DMs then run the command ${prefix}verify`)
               .setImage('https://i.imgur.com/sEkQOCf.png');
 
             vchannel.send({ content: `<@!${args[0].user.id}>`, embed: enableDMEmb }).then((message) => message.delete({ timeout: 20000 }));
