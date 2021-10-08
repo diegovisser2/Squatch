@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const msgModel = require("../../models/messages");
-const user = require("../../models/user");
+const msgModel = require("../../misc/messages.js");
+const user = require("../../misc/user.js");
 
 module.exports = {
   name: 'message',
@@ -33,7 +33,6 @@ module.exports = {
       msgs = msgDoc.messages;
     }
 
-    let msg;
     if (!ub) {
       msg = 0;
     } else {

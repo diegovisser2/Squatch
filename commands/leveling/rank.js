@@ -1,7 +1,7 @@
 const Levels = require("discord-xp");
 const Canvas = require("discord-canvas"),
 Discord = require("discord.js");
-const theuser = require("../../models/user");
+const theuser = require("../../misc/user.js");
 
 module.exports = {
   name: 'rank',
