@@ -103,7 +103,7 @@ module.exports = {
       dataEmbed.setDescription(body);
       message.client.channels.cache
         .get(partnerChannel)
-        .send({ embed: dataEmbed, split: true });
+        .send({ embeds: dataEmbed, split: true });
     });
     if (!data.args.length) return;
     if (data.args[0] === 'decline') {
@@ -115,14 +115,14 @@ module.exports = {
       const User = message.mentions.users.first();
       if (!User) return message.channel.send('Please provide a user for me to decline');
       User.send(
-        `Your application to ${message.guild.name} got declined...`,
+        `Your application to ${message.guild.name} got declined`,
       );
     }
 
     if (data.args[0] === 'accept') {
       if (!message.member.roles.cache.has(partnermanagerrole)) {
         return message.channel.send(
-          "you dont' have permission to use this command",
+          "you dont have permission to use this command",
         );
       }
       const User = message.mentions.users.first();

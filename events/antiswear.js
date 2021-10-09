@@ -13,7 +13,7 @@ client.on("message", async message => {
     for (let i = 0; i < noWords["blockedWords"].length; i++) {
         if (msg.includes(noWords["blockedWords"][i])) {
             message.delete()
-            return message.channel.send(`❌ You are not allowed to say that. ${message.author}`).then(msg => msg.delete({ timeout: 10000 }))
+            return message.channel.send(`❌ You are not allowed to say that. ${message.author}`)
             message.member.roles.add(mutedrole)
             setTimeout(async () => {
                 await message.member.roles.remove(mutedrole);
