@@ -13,6 +13,6 @@ module.exports = (client) => {
       embed.addField('New Emoji Name', newEmoji.name, true);
     }
     embed.addField('Emoji ID', oldEmoji.id, true);
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

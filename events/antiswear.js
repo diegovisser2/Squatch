@@ -6,7 +6,7 @@ client.on("message", async message => {
     if (message.member.hasPermission('ADMINISTRATOR')) return;
     if (message.webhookID) return;
 
-    var noWords = JSON.parse(fs.readFileSync("../misc/list.txt"));
+    var noWords = JSON.parse(fs.readFileSync("../misc/bannedwords.txt"));
     // Check if CAPS or cApS are
     var msg = message.content.toLowerCase().split(" ");
     // Check the blockedWords, and if so remove the message 

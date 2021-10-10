@@ -12,6 +12,6 @@ module.exports = (client) => {
       .addField('Emoji ID', emoji.id, true)
       .addField('Animted Emoji?', emoji.animated);
     emoji.author ? embed.addField('Added By', emoji.author.tag) : null;
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

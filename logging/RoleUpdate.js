@@ -27,7 +27,7 @@ module.exports = (client) => {
             	embed.addField('Old Role Mentionable By Everyone?', Old.mentionable);
         embed.addField('New Role Mentionable By Everyone?', Old.mentionable);
       }
-        	return logs.send(embed);
+        	return logs.send({ embeds: [embed] });
     }
   });
 };

@@ -11,6 +11,6 @@ module.exports = (client) => {
       .addField('Emoji Name', emoji.name, true)
       .addField('Emoji ID', emoji.id, true)
       .addField('Animted Emoji?', emoji.animated);
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

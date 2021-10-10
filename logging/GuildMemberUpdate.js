@@ -24,7 +24,7 @@ module.exports = (client) => {
       }
 
       embed.setThumbnail(New.user.displayAvatarURL({ dynamic: true }));
-      return logs.send(embed);
+      return logs.send({ embeds: [embed] });
     }
   });
 };

@@ -12,6 +12,6 @@ module.exports = (client) => {
       .addField('User ID', member.id, true)
       .addField('User Account Registered At', member.user.createdAt)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

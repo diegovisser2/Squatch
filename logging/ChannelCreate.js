@@ -11,7 +11,7 @@ module.exports = (client) => {
         .setDescription('A new channel was created.')
         .addField('Channel', channel, true)
         .addField('Channel ID', channel.id, true);
-      return logs.send(embed);
+      return logs.send({ embeds: [embed] });
     }
   });
 };

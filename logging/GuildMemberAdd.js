@@ -13,6 +13,6 @@ module.exports = (client) => {
       .addField('User Joined At', member.joinedAt, true)
       .addField('User Account Registered At', member.user.createdAt, true)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

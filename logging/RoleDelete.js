@@ -13,6 +13,6 @@ module.exports = (client) => {
       .addField('Role Was Hoisted?', role.hoist)
       .addField('Role Was Mentionable By Everyone?', role.mentionable)
       .addField('Role Position', role.position);
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

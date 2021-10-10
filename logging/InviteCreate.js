@@ -16,6 +16,6 @@ module.exports = (client) => {
         	if (invite.inviter) {
       embed.addField('Inviter', `${invite.inviter.tag} | ${invite.inviter.id}`);
     }
-    return logs.send(embed);
+    return logs.send({ embeds: [embed] });
   });
 };

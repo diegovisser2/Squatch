@@ -15,7 +15,7 @@ module.exports = (client) => {
         embed.addField('Channel Topic', channel.topic);
       }
       embed.addField('NSFW', channel.nsfw);
-      return logs.send(embed);
+      return logs.send({ embeds: [embed] });
     }
   });
 };

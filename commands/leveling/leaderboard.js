@@ -10,13 +10,14 @@ module.exports = {
   userPermissions: [],
   run: async (client, msg, args) => {
     Levels.setURL(process.env.mongo_url);
-
+    const embed = new MessageEmbed()
+    .setTitle('Leaderboard')
+    .setColor('BLUE')
+    .setDescription("Nobody's in leaderboard yet. Be the first one to climb to the top!")
     const rawLeaderboard = await Levels.fetchLeaderboard(msg.guild.id, 10); // We grab top 10 users with most xp in the current server.
 
     if (rawLeaderboard.length < 1)
-      return reply(
-        "Nobody's in leaderboard yet. Be the first one to climb to the top!"
-      );
+      return reply({ embeds: [embed] });
 
     const leaderboard = await Levels.computeLeaderboard(
       client,
