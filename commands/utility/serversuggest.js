@@ -11,23 +11,23 @@ module.exports = {
   userPermissions: [],
   run: (client, msg, data) => {
     const { args } = data;
-    message.delete();
+    msg.delete();
     const suggestmsg = args.join(' ');
     const noarg = new Discord.MessageEmbed()
       .setColor('RED')
       .setTitle('Error')
       .setDescription('Error')
-      .setFooter(`${message.author.username}`);
-    if (!suggestmsg) return message.channel.send(noarg).then((msg) => msg.delete({ timeout: 10000 }));
+      .setFooter(`${msg.author.username}`);
+    if (!suggestmsg) return msg.channel.send(noarg).then((msg) => msg.delete({ timeout: 10000 }));
     const suggestembed = new Discord.MessageEmbed()
       .setColor('GREEN')
       .setTitle('New Suggestion')
       .setDescription(`${suggestmsg}`)
-      .setFooter(`Suggested by ${message.author.username}!`);
+      .setFooter(`Suggested by ${msg.author.username}!`);
     if (suggestchannel) {
-      message.member.guild.channels.cache.get(suggestchannel).send(suggestembed).then(async (message) => {
-        await message.react('👍');
-        await message.react('👎');
+      msg.member.guild.channels.cache.get(suggestchannel).send(suggestembed).then(async (msg) => {
+        await msg.react('👍');
+        await msg.react('👎');
       });
     }
   },

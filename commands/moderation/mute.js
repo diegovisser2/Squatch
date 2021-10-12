@@ -53,15 +53,13 @@ module.exports = {
     const server = client.guilds.cache.get(serverID);
     if (!msg.member.roles.cache.has(staffrole)) {
       return msg
-        .reply(
-          'You have to be with the moderation team to be able to use this command!',
-        );
+        .reply({ embeds: [Prohibited] });
     }
     const toWarn = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
     const moderator = msg.member;
     if (!toWarn) {
       return msg
-        .reply('Please insert a member to mute!');
+        .reply({ embeds: [validuser] });
     }
     warnsDB.ensure(toWarn.id, { warns: {} });
     mutedDB.ensure(toWarn.id, {
@@ -70,15 +68,11 @@ module.exports = {
     let duration = args[1];
     if (!duration) {
       return msg
-        .reply(
-          'Please insert the duration you want to mute this member for (insert 0 for perm)!',
-        );
+        .reply({ embeds: [durationtime] });
     }
     if (!/^\d+$/.test(duration)) {
       return msg
-        .reply(
-          'Please insert the duration you want to mute this member for (insert 0 for perm)!',
-        )
+        .reply({ embeds: [durationtime] })
         .then((d) => d.delete({ timeout: 5000 }))
         .then(msg.delete({ timeout: 2000 }));
     }
@@ -90,10 +84,10 @@ module.exports = {
       .trim();
     if (!reason) {
       return msg
-        .reply('Please insert the reason you want to mute this member for!');
+        .reply({ embeds: [stateareason] });
     }
     if (cannedMsgs.has(reason)) reason = cannedMsgs.get(reason);
-    if (moderator.id == toWarn.id) return msg.reply('You may not mute yourself dumby!');
+    if (moderator.id == toWarn.id) return msg.reply({ embeds: [cantmuteyourself] });
     if (
       server.member(moderator.id).roles.highest.rawPosition
       <= (server.member(toWarn.id)
@@ -101,9 +95,7 @@ module.exports = {
         : 0)
     ) {
       return msg
-        .reply(
-          'You may not mute someone with the same rank or a rank higher as yourself!',
-        );
+        .reply({ embeds: [samerankorhigher] });
     }
     const warnLogs = server.channels.cache.get(channelLog);
     mutedDB.set(toWarn.id, {

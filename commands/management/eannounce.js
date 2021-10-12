@@ -14,7 +14,7 @@ module.exports = {
   category: 'management',
   clientPermissions: [],
   userPermissions: [],
-  run: async (client, message, data) => {
+  run: async (client, msg, data) => {
     const Prohibited = new Discord.MessageEmbed()
       .setColor('RED')
       .setTitle('Prohibited User')
@@ -25,10 +25,10 @@ module.exports = {
       .setDescription(
         'Make sure to include a description for the announcement! (Must be longer than 5 words)',
       );
-    if (!message.member.roles.cache.has(adminrole)) return message.reply(Prohibited);
-    const announceChan = message.client.channels.cache.get(Announcement);
-    await announceChan.messages.fetch();
-    if (data.length < 5) return message.reply(Description);
+    if (!msg.member.roles.cache.has(adminrole)) return msg.reply({ embeds: [Prohibited] });
+    const announceChan = msg.client.channels.cache.get(Announcement);
+    await announceChan.msg.fetch();
+    if (data.length < 5) return msg.reply(Description);
     const AnnDesc = data.join(' ').trim();
     const em = new MessageEmbed().setColor('PURPLE').setDescription(AnnDesc);
     await announceChan.send({ content: `<@&${serverID}>`, embeds: [em] });

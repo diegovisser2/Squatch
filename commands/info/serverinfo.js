@@ -7,7 +7,7 @@ module.exports = {
   name: 'serverinfo',
   description: 'lists information about the server',
   aliases: ['sinfo', 'infoserver'],
-  category: 'utility',
+  category: 'info',
   clientPermissions: [],
   userPermissions: [],
   run: (client, msg, data) => {

@@ -47,7 +47,7 @@ module.exports = {
     }
     const toWarn = msg.mentions.users.first() || client.users.cache.get(args[0]);
     const moderator = msg.member;
-    if (!toWarn) return msg.reply(validuser);
+    if (!toWarn) return msg.reply({ embeds: [validuser] });
     warnsDB.ensure(toWarn.id, { warns: {} });
     let reason = args.join(' ').replace(args[0], '').trim();
     if (!reason) {

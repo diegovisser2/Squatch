@@ -19,7 +19,7 @@ module.exports = {
       .setTitle('Success')
       .setDescription(`${message.author.username} claimed this ticket!`);
 
-    if (!msg.member.roles.cache.has(supportrole)) {
+    if (!message.member.roles.cache.has(supportrole)) {
       const m = await message.channel.send({ embeds: [Prohibited] });
       return setTimeout(() => m.delete(), 5000);
     }

@@ -27,9 +27,9 @@ module.exports = {
       .setColor('RED')
       .setTitle('Error')
       .setDescription('Role doesnt exist');
-    if (!message.member.roles.cache.has(adminrole)) return Prohibited;
+    if (!message.member.roles.cache.has(adminrole)) return msg.reply({ embeds: [Prohibited] });
 
-    if (!data.args[0] || !data.args[1]) return message.channel.send(Error);
+    if (!data.args[0] || !data.args[1]) return message.channel.send({ embeds: [Error] });
 
     try {
       const member = message.mentions.members.first()

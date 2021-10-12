@@ -9,7 +9,7 @@ module.exports = {
   name: 'help',
   description: 'lists all of the commands',
   aliases: [],
-  category: 'utility',
+  category: 'info',
   clientPermissions: [],
   userPermissions: [],
   run: (client, msg, data) => {

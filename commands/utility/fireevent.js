@@ -8,14 +8,14 @@ module.exports = {
   description: 'Manually emit an event.',
   run: (client, msg, data) => {
     const { args } = data;
-    if (!message.member.roles.cache.has(adminrole)) return message.channel.send(`${xEmoji} Only Administrators can use this command!`);
+    if (!msg.member.roles.cache.has(adminrole)) return msg.channel.send(`${xEmoji} Only Administrators can use this command!`);
     try {
-      message.client.emit(data.args[0], data.args.slice(1));
+      msg.client.emit(data.args[0], data.args.slice(1));
     } catch (e) {
       console.error(e);
-      return message.channel.send(`${xEmoji} An error occured.`);
+      return nsg.channel.send(`${xEmoji} An error occured.`);
     }
     console.log(data.args, data.args.slice(1));
-    message.channel.send(':white_check_mark: Successfully emitted event.');
+    msg.channel.send(':white_check_mark: Successfully emitted event.');
   },
 };

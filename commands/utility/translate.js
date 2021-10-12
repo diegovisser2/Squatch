@@ -1,0 +1,29 @@
+const discord = require("discord.js");
+const translate = require('@iamtraction/google-translate');
+
+module.exports = {
+    name: "translate",
+    description: "Translates the given message.",
+    run: async (client, msg, args) => {
+        const txt = args.slice(1).join(" ")
+        const lang = args[0]
+        const pleasecorrectyourself = new Discord.MessageEmbed()
+            .setTitle("Error")
+            .addField(`Please enter a valid ISO code of the language you would like to translate. E.G. England = en/eng`)
+            .setColor("RED");
+        const Notext = new Discord.MessageEmbed()
+            .setTitle("Error")
+            .addField(`Please enter the piece of text you would like to translate`)
+            .setColor("RED");
+        if (!lang) return msg.channel.send({ embeds: [pleasecorrectyourself] });
+        if (!txt) return msg.channel.send({ embeds: [Notext] });
+        translate(txt, { to: lang }).then(res => {
+            const embed = new discord.MessageEmbed()
+                .setDescription(res.text)
+                .setColor("ORANGE")
+            msg.channel.send({ embeds: [embed] });
+        }).catch(err => {
+            msg.channel.send({ embeds: [pleasecorrectyourself] });
+        });
+    },
+};

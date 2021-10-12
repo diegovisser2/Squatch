@@ -68,11 +68,11 @@ module.exports = {
       .setColor('RED')
       .setTitle('Error')
       .setDescription(`I'm sorry but you have to be in <#${requestbreak}> to use this!`);
-    if (!staffrole) return msg.reply(Prohibited).then((d) => d.delete({ timeout: 7000 })).then(msg.delete({ timeout: 3000 }));
-    if (!adminrole && msg.channel.id != requestbreak) return msg.reply(youhavetobeinacertainchannelpatternup).then((d) => d.delete({ timeout: 7000 })).then(msg.delete({ timeout: 3000 }));
+    if (!staffrole) return message.reply(Prohibited).then((d) => d.delete({ timeout: 7000 })).then(message.delete({ timeout: 3000 }));
+    if (!adminrole && message.channel.id != requestbreak) return message.reply(youhavetobeinacertainchannelpatternup).then((d) => d.delete({ timeout: 7000 })).then(message.delete({ timeout: 3000 }));
     const breaksDB = new Enmap({ name: 'breaks' });
-    breaksDB.ensure(msg.author.id, {
-      ID: msg.author.id, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A',
+    breaksDB.ensure(message.author.id, {
+      ID: message.author.id, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A',
     });
     const action = args[0];
     const requestedAt = Date.now();
@@ -81,25 +81,25 @@ module.exports = {
     const breakRole = client.guilds.cache.get(serverID).roles.cache.get(breakrole);
     const breakQueue = client.channels.cache.get(requestbreak);
     if (action && action == 'request') {
-      if (breaksDB.get(msg.author.id).status == 'N/A') {
-        if (!duration) return msg.reply(stateatime).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
-        if (reason.length < 2) return msg.reply(stateareason).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
-        breaksDB.set(msg.author.id, {
-          ID: msg.author.id, requestedAt, status: 'pending', reason: reason.join(' '), duration,
+      if (breaksDB.get(message.author.id).status == 'N/A') {
+        if (!duration) return message.reply(stateatime).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
+        if (reason.length < 2) return message.reply(stateareason).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
+        breaksDB.set(message.author.id, {
+          ID: message.author.id, requestedAt, status: 'pending', reason: reason.join(' '), duration,
         });
-        msg.reply(successfullyenteredit).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
+        message.reply(successfullyenteredit).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
         const em = new MessageEmbed()
-          .setTitle(`${msg.author.username}'s Break Request`)
+          .setTitle(`${message.author.username}'s Break Request`)
           .addField('Duration:', duration)
           .addField('Reason:', reason.join(' '))
-          .setFooter(`${msg.author.username}'s ID: ${msg.author.id}`);
-        return breakQueue.send(em);
+          .setFooter(`${message.author.username}'s ID: ${message.author.id}`);
+        return breakQueue.send({ embeds: [em] });
       }
-      return msg.reply(alreadyononemate).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
+      return message.reply(alreadyononemate).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
     } if (action && action == 'approve' && adminrole) {
       const thatRequested = args[1];
-      if (!thatRequested) return msg.reply(statewhojesus).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
-      if (!breaksDB.get(thatRequested) && breaksDB.get(thatRequested).status != 'pending') return msg.reply(idisincorrectjesuschrist).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
+      if (!thatRequested) return message.reply({ embeds: [statewhojesus] }).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
+      if (!breaksDB.get(thatRequested) && breaksDB.get(thatRequested).status != 'pending') return message.reply({ embeds: [idisincorrectdenyjesuschrist] }).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
       const oldRequestedAt = breaksDB.get(thatRequested).requestedAt;
       const oldReason = breaksDB.get(thatRequested).reason;
       const oldDuration = breaksDB.get(thatRequested).duration;
@@ -110,34 +110,34 @@ module.exports = {
       const em = new MessageEmbed()
         .setTitle(`Approved ${client.users.cache.get(thatRequested).username}'s Break Request`)
         .setColor('GREEN');
-      breakQueue.send(em);
+      breakQueue.send({ embeds: [em] });
       const confirmEm = new MessageEmbed()
         .setTitle('Your break request has been approved!')
         .setColor('GREEN');
-      return client.users.cache.get(thatRequested).send(confirmEm);
+      return client.users.cache.get(thatRequested).send({ embeds: [confirmEm] });
     } if (action && action == 'deny' && adminrole) {
       const thatRequested = args[1];
-      if (!thatRequested) return msg.reply(statewhotodenyjesus).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
-      if (!breaksDB.get(thatRequested) && breaksDB.get(thatRequested).status != 'pending') return msg.reply(idisincorrectdenyjesuschrist).then((d) => d.delete({ timeout: 10000 })).then(msg.delete({ timeout: 3000 }));
+      if (!thatRequested) return message.reply(statewhotodenyjesus).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
+      if (!breaksDB.get(thatRequested) && breaksDB.get(thatRequested).status != 'pending') return message.reply(idisincorrectdenyjesuschrist).then((d) => d.delete({ timeout: 10000 })).then(message.delete({ timeout: 3000 }));
       breaksDB.set(thatRequested, {
         ID: thatRequested, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A',
       });
       const em = new MessageEmbed()
         .setTitle(`Denied ${client.users.cache.get(thatRequested).username}'s Break Request`)
         .setColor('RED');
-      breakQueue.send(em);
+      breakQueue.send({ embeds: [em] });
       const deniedEm = new MessageEmbed()
         .setTitle('Your break request has been denied!')
         .setColor('RED');
-      return client.users.cache.get(thatRequested).send(deniedEm);
+      return client.users.cache.get(thatRequested).send({ embeds: [deniedEm] });
     } if (action && action == 'end') {
-      if (breaksDB.get(msg.author.id).status != 'approved') return msg.channel.send({ embeds: [youarentonabreak] });
-      breaksDB.set(msg.author.id, {
-        ID: msg.author.id, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A',
+      if (breaksDB.get(message.author.id).status != 'approved') return message.channel.send({ embeds: [youarentonabreak] });
+      breaksDB.set(message.author.id, {
+        ID: message.author.id, requestedAt: 'N/A', status: 'N/A', reason: 'N/A', duration: 'N/A',
       });
-      msg.member.roles.remove(breakRole);
-      return msg.channel.send({ embeds: [iendedyourbreak] });
+      message.member.roles.remove(breakRole);
+      return message.channel.send({ embeds: [iendedyourbreak] });
     }
-    return msg.channel.send({ embeds: [usageonthiscommand123] });
+    return message.channel.send({ embeds: [usageonthiscommand123] });
   },
 };

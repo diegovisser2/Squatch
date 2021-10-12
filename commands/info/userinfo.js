@@ -6,7 +6,7 @@ module.exports = {
   name: 'userinfo',
   description: 'userinfo',
   aliases: [],
-  category: 'utility',
+  category: 'info',
   clientPermissions: [],
   userPermissions: [],
   run: (client, msg, data) => {
