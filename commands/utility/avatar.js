@@ -19,10 +19,10 @@ module.exports = {
     if (!args[0]) member = msg.member;
     if (args[0]) {
       member = server.members.cache.get(args[0])
-    || server.members.cache.find((m) => m.user.username.toLowerCase() == args[0].toLowerCase())
-    || server.members.cache.find((m) => m.user.tag.toLowerCase() == args[0].toLowerCase())
-    || server.members.cache.find((m) => m.displayName.toLowerCase() == args[0].toLowerCase())
-    || msg.mentions.members.first() || msg.member;
+        || server.members.cache.find((m) => m.user.username.toLowerCase() == args[0].toLowerCase())
+        || server.members.cache.find((m) => m.user.tag.toLowerCase() == args[0].toLowerCase())
+        || server.members.cache.find((m) => m.displayName.toLowerCase() == args[0].toLowerCase())
+        || msg.mentions.members.first() || msg.member;
     }
     const em = new MessageEmbed()
       .setColor('GREEN')

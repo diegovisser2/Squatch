@@ -5,7 +5,7 @@ module.exports = (client) => {
   client.on('channelDelete', async (channel) => {
     const logs = await client.channels.cache.get(channelLog);
     if (channel.type === 'text') {
-        	const embed = new MessageEmbed()
+      const embed = new MessageEmbed()
         .setTitle('Channel Deleted')
         .setColor('GREEN')
         .setDescription('A channel was deleted.')

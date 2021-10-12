@@ -4,7 +4,7 @@ const { channelLog } = require('../config/constants/channel.json');
 module.exports = (client) => {
   client.on('emojiUpdate', async (oldEmoji, newEmoji) => {
     const logs = await client.channels.cache.get(channelLog);
-        	const embed = new MessageEmbed()
+    const embed = new MessageEmbed()
       .setTitle('Emoji Updated')
       .setColor('GREEN')
       .setDescription('A custom emoji was updated.');

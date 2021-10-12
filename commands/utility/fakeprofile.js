@@ -19,6 +19,6 @@ module.exports = {
       .setColor('PURPLE')
       .setTitle('Fake profile')
       .addFields('General information', `**Name:** ${fakerator.names.name()}\n**Country:** ${fakerator.address.country()}\n**City:** ${fakerator.address.city()}\n**Street:** ${fakerator.address.street()}`);
-      message.channel.send({ embeds: [fakeprofile] });
+    msg.channel.send({ embeds: [fakeprofile] });
   },
 };

@@ -3,9 +3,9 @@ const { channelLog } = require('../config/constants/channel.json');
 
 module.exports = (client) => {
   client.on('guildMemberUpdate', async (Old, New) => {
- 	   const logs = await client.channels.cache.get(channelLog);
-	   if (Old.user.tag !== New.user.tag || Old.displayName !== New.displayName || Old.user.username !== New.user.username) {
-    	   const embed = new MessageEmbed()
+    const logs = await client.channels.cache.get(channelLog);
+    if (Old.user.tag !== New.user.tag || Old.displayName !== New.displayName || Old.user.username !== New.user.username) {
+      const embed = new MessageEmbed()
         .setTitle('Member Updated')
         .setColor('GREEN');
       if (Old.user.tag !== New.user.tag) {
@@ -14,11 +14,11 @@ module.exports = (client) => {
       } else {
         embed.addField('User Tag', Old.user.tag);
       }
-        	if (Old.displayName !== New.displayName) {
+      if (Old.displayName !== New.displayName) {
         embed.addField('Old Nickname', Old.nickname);
         embed.addField('New Nickname', New.nickname);
       }
-        	if (Old.user.username !== New.user.username) {
+      if (Old.user.username !== New.user.username) {
         embed.addField('Old Username', Old.user.username);
         embed.addField('New Username', New.user.username);
       }

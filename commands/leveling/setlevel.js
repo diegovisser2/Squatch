@@ -24,7 +24,11 @@ module.exports = {
     }
 
     if (!argsLevel) {
-      return msg.channel.send("Please provide the level you want to set");
+      const SetLevel = new Discord.MessageEmbed()
+      .setColor('RED')
+      .setTitle('Error')
+      .setDescription('Please provide the level you want to set');
+      return msg.channel.send({ embeds: [SetLevel] });
     }
 
     const user = await Levels.fetch(member.id, msg.guild.id);
@@ -34,7 +38,10 @@ module.exports = {
     } else {
       Levels.setLevel(member.id, msg.guild.id, argsLevel);
     }
-
-    msg.channel.send(`Set ${member}'s level to ${argsLevel}`);
+    const Finished = new Discord.MessageEmbed()
+    .setColor('RED')
+    .setTitle('Green')
+    .setDescription(`Successfuly set ${member}'s level to ${argsLevel}!`);
+    msg.channel.send({ embeds: [Finished] });
   },
 };

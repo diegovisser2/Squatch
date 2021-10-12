@@ -32,10 +32,10 @@ module.exports = {
     let member;
     if (args[0]) {
       member = server.members.cache.get(args[0])
-      || server.members.cache.find((m) => m.user.username.toLowerCase() == args[0].toLowerCase())
-      || server.members.cache.find((m) => m.user.tag.toLowerCase() == args[0].toLowerCase())
-      || server.members.cache.find((m) => m.displayName.toLowerCase() == args[0].toLowerCase())
-      || msg.mentions.members.first() || false;
+        || server.members.cache.find((m) => m.user.username.toLowerCase() == args[0].toLowerCase())
+        || server.members.cache.find((m) => m.user.tag.toLowerCase() == args[0].toLowerCase())
+        || server.members.cache.find((m) => m.displayName.toLowerCase() == args[0].toLowerCase())
+        || msg.mentions.members.first() || false;
     }
     if (!args[0]) member = msg.member;
     if (member) {

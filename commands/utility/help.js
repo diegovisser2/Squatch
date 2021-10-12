@@ -31,7 +31,7 @@ module.exports = {
       .setDescription('Below you can see the current Command Categories\nyou can also see basic server information')
       .addFields(
         { name: 'Command Categories', value: 'Management\nModeration\nUtility', inline: true },
-		    { name: 'Server information', value: `[Server Invite](${discordlink})`, inline: true },
+        { name: 'Server information', value: `[Server Invite](${discordlink})`, inline: true },
       );
     const managementembed = new MessageEmbed()
       .setColor('ORANGE')

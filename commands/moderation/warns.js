@@ -33,10 +33,9 @@ module.exports = {
         .setTitle('Warnings')
         .setColor('GREEN')
         .setDescription(
-          `\`${
-            Object.keys(warnsDB.get(user.id).warns).length != 0
-              ? Object.keys(warnsDB.get(user.id).warns).join('\n')
-              : 'You have not been warned before'
+          `\`${Object.keys(warnsDB.get(user.id).warns).length != 0
+            ? Object.keys(warnsDB.get(user.id).warns).join('\n')
+            : 'You have not been warned before'
           }\``,
         );
       await msg.author.send({ embeds: [em] }).catch((err) => msg.reply(enabledms));
@@ -55,10 +54,9 @@ module.exports = {
         .setTitle('Warnings')
         .setColor('GREEN')
         .setDescription(
-          `\`${
-            Object.keys(warnsDB.get(user.id).warns).length != 0
-              ? Object.keys(warnsDB.get(user.id).warns).join('\n')
-              : 'User has not been warned before'
+          `\`${Object.keys(warnsDB.get(user.id).warns).length != 0
+            ? Object.keys(warnsDB.get(user.id).warns).join('\n')
+            : 'User has not been warned before'
           }\``,
         );
       await msg.member.send(em).catch((err) => msg.reply(enabledms));

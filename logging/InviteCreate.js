@@ -4,7 +4,7 @@ const { channelLog } = require('../config/constants/channel.json');
 module.exports = (client) => {
   client.on('inviteCreate', async (invite) => {
     const logs = await client.channels.cache.get(channelLog);
-        	const embed = new MessageEmbed()
+    const embed = new MessageEmbed()
       .setTitle('New Invite Created')
       .setColor('GREEN')
       .addField('Invite Code', invite.code, true)
@@ -13,7 +13,7 @@ module.exports = (client) => {
     if (invite.expiresAt) {
       embed.addField('Invite Expires At', invite.expiresAt);
     }
-        	if (invite.inviter) {
+    if (invite.inviter) {
       embed.addField('Inviter', `${invite.inviter.tag} | ${invite.inviter.id}`);
     }
     return logs.send({ embeds: [embed] });

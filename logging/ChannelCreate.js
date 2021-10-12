@@ -5,7 +5,7 @@ module.exports = (client) => {
   client.on('channelCreate', async (channel) => {
     const logs = await client.channels.cache.get(channelLog);
     if (channel.type === 'text') {
-        	const embed = new MessageEmbed()
+      const embed = new MessageEmbed()
         .setTitle('Channel Created')
         .setColor('GREEN')
         .setDescription('A new channel was created.')
