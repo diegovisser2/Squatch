@@ -2,7 +2,7 @@ const { mutedrole } = require('../config/constants/roles.json');
 
 module.exports = {
     name: 'antiswear',
-    async call(client, args) {
+    async call(client, message, args) {
         const T = 7000;
         if (message.author.bot) return;
         if (message.member.hasPermission('ADMINISTRATOR')) return;

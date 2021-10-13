@@ -4,7 +4,7 @@ const { channelLog } = require('../config/constants/channel.json');
 module.exports = (client) => {
   client.on('channelCreate', async (channel) => {
     const logs = await client.channels.cache.get(channelLog);
-    if (channel.type === 'text') {
+    if (channel.type === 'GUILD_TEXT') {
       const embed = new MessageEmbed()
         .setTitle('Channel Created')
         .setColor('GREEN')
