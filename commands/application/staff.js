@@ -11,7 +11,7 @@ module.exports = {
   category: 'application',
   guildOnly: false,
   run: async (message, data) => {
-    if (message.channel.type !== 'dm') {
+    if (message.channel.type !== 'DM') {
       message.delete();
       const Application = new Discord.MessageEmbed()
         .setTitle('Application')
