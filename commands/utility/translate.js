@@ -2,9 +2,13 @@ const discord = require("discord.js");
 const translate = require('@iamtraction/google-translate');
 
 module.exports = {
-    name: "translate",
-    description: "Translates the given message.",
-    run: async (client, msg, args) => {
+    name: 'translate',
+    description: 'translates specific text',
+    aliases: [],
+    category: 'utility',
+    clientPermissions: [],
+    userPermissions: [],
+    run: (msg, data) => {
         const txt = args.slice(1).join(" ")
         const lang = args[0]
         const pleasecorrectyourself = new Discord.MessageEmbed()
