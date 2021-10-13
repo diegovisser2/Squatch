@@ -1,27 +1,16 @@
 {
-  "name": "Squatch",
-  "version": "1.0.0",
-  "description": "What do I put here...",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@haileybot/captcha-generator": "^1.7.0",
+    "@iamtraction/google-translate": "^1.1.2",
     "canvas": "^2.8.0",
-    "discord.js": "^13.1.0",
+    "discord.js": "^13.2.0",
     "dotenv": "^10.0.0",
     "enmap": "^5.8.7",
     "fakerator": "^0.3.4",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "mongoose": "^6.0.7"
-  },
-  "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1"
+    "mongoose": "^6.0.10",
+    "nanoid": "^3.1.29",
+    "table-topic-generator": "^1.0.2"
   }
 }
