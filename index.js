@@ -129,41 +129,10 @@ if (!channelTable['count(*)']) {
 // sql.prepare("CREATE TABLE rankCardTable (id TEXT PRIMARY KEY, user TEXT, guild TEXT, image BLOB, fontColor TEXT, barColor TEXT, overlay TEXT);").run();
 // }
 
-
-// Message Events
-client.on("message", (message) => {
-  if (message.author.bot) return;
-  if (!message.guild) return;
-  const now = Date.now();
-  const timestamps = cooldowns.get(command.name);
-  const cooldownAmount = (command.cooldown || 1) * 1000;
-
-  if (timestamps.has(message.author.id)) {
-    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-
-    if (now < expirationTime) {
-      const timeLeft = (expirationTime - now) / 1000;
-      return message.reply(
-        `Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`
-      );
-    }
-  }
-  timestamps.set(message.author.id, now);
-  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
-  try {
-    command.execute(message, args);
-  } catch (error) {
-    console.error(error);
-    message.reply("There was an error executing that command.").catch(console.error);
-  }
-});
 // XP Messages 
-client.on("message", message => {
+client.on("messageCreate", message => {
   if (message.author.bot) return;
   if (!message.guild) return;
-  let blacklist = sql.prepare(`SELECT id FROM blacklistTable WHERE id = ?`);
-  if (blacklist.get(`${message.guild.id}-${message.author.id}`) || blacklist.get(`${message.guild.id}-${message.channel.id}`)) return;
   // get level and set level
   const level = client.getLevel.get(message.author.id, message.guild.id)
   if (!level) {
