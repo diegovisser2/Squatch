@@ -4,11 +4,12 @@ const sql = new SQlite('./mainDB.sqlite');
 
 module.exports = {
     name: 'set-level',
-    aliases: ['levelset'],
-    category: "Leveling",
-    description: "Set user Level and XP",
-    cooldown: 3,
-    async execute(message, args) {
+    description: 'Set the selected users level and xp',
+    aliases: ['setlevel'],
+    category: 'leveling',
+    clientPermissions: [],
+    userPermissions: [],
+    run: async (client, message, data) => {
         let userArray = message.content.split(" ");
         let userArgs = userArray.slice(1);
         let user = message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0])

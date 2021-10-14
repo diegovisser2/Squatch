@@ -3,12 +3,13 @@ const SQlite = require("better-sqlite3");
 const sql = new SQlite('./mainDB.sqlite');
 
 module.exports = {
-    name: 'xpsettings',
-    aliases: ['setxp', 'set-xp', 'xp-settings'],
-    category: "Leveling",
-    description: "Set custom XP and Cooldown",
-    cooldown: 3,
-    async execute(message, args) {
+    name: 'xp-setting',
+    description: 'set xp settings and cooldown',
+    aliases: ['xp-settings', 'xpsetting', 'xpsettings'],
+    category: 'leveling',
+    clientPermissions: [],
+    userPermissions: [],
+    run: async (client, message, data) => {
         if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply(`You do not have permission to use this command!`);
 
         if (!args.length)

@@ -1,16 +1,16 @@
 const Discord = require("discord.js");
-const config = require('../config.json')
-const prefix = config.prefix;
+const { prefix } = require('../../config/main.json')
 const SQlite = require("better-sqlite3");
 const sql = new SQlite('./mainDB.sqlite');
 
 module.exports = {
     name: 'role-level',
-    aliases: ['rlevel', 'level-roles'],
-    description: "Rewards role when user leveled up to a certain level",
-    category: "Leveling",
-    cooldown: 3,
-    async execute(message, args) {
+    description: 'rewards the users for leveling up!',
+    aliases: ['rolelevel', 'levelrole', 'level-role'],
+    category: 'leveling',
+    clientPermissions: [],
+    userPermissions: [],
+    run: async (client, message, data) => {
         if (!message.guild.me.hasPermission("MANAGE_ROLES")) return message.reply(`I do not have permission to manage roles!`);
         if (!message.member.hasPermission("MANAGE_ROLES") || !message.member.hasPermission("MANAGE_GUILD")) return message.reply(`You do not have permission to use this command!`);
 
