@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const SQlite = require("better-sqlite3");
 const sql = new SQlite('./mainDB.sqlite');
-const client = new Discord.Client();
 
 module.exports = {
     name: 'set-level',

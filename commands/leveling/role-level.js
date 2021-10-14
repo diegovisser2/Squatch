@@ -3,7 +3,6 @@ const config = require('../config.json')
 const prefix = config.prefix;
 const SQlite = require("better-sqlite3");
 const sql = new SQlite('./mainDB.sqlite');
-const client = new Discord.Client();
 
 module.exports = {
     name: 'role-level',

@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const SQLite = require("better-sqlite3");
 const sql = new SQLite('./mainDB.sqlite')
-const client = new Discord.Client();
 
 module.exports = {
   name: 'leaderboard',
