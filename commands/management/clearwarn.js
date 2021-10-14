@@ -1,4 +1,3 @@
-const moment = require('moment');
 const Enmap = require('enmap');
 require('moment-duration-format');
 const { MessageEmbed } = require('discord.js');

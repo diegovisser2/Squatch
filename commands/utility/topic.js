@@ -1,5 +1,3 @@
-const moment = require('moment');
-const Enmap = require('enmap');
 const randomTopic = require('table-topic-generator');
 require('moment-duration-format');
 

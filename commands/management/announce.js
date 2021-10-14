@@ -1,10 +1,8 @@
-const moment = require('moment');
-const Enmap = require('enmap');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 require('moment-duration-format');
 const { adminrole, roleID } = require('../../config/constants/roles.json');
-const { Announcement } = require('../../config/constants/channel.json');
+const { announcement } = require('../../config/constants/channel.json');
 
 module.exports = {
   name: 'announce',
@@ -25,7 +23,7 @@ module.exports = {
         'Make sure to include a description for the announcement! (Must be longer than 5 words)',
       );
     if (!message.member.roles.cache.has(adminrole)) { return message.reply(Prohibited).then(message.delete({ timeout: 3000 })); }
-    const announceChan = message.client.channels.cache.get(Announcement);
+    const announceChan = message.client.channels.cache.get(announcement);
     await announceChan.messages.fetch();
     if (data.length < 5) return message.reply(Description);
     const AnnDesc = data.join(' ').trim();

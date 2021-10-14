@@ -1,9 +1,5 @@
-const moment = require('moment');
-const discord = require('discord.js');
-const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const { staffrole, adminrole, breakrole } = require('../../config/constants/roles.json');
-const { discordlink, serverID } = require('../../config/main.json');
+const { discordlink } = require('../../config/main.json');
 
 module.exports = {
   name: 'help',

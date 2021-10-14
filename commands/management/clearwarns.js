@@ -1,4 +1,3 @@
-const moment = require('moment');
 const Enmap = require('enmap');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');

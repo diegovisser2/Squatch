@@ -134,36 +134,6 @@ if (!channelTable['count(*)']) {
 client.on("message", (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
-
-  const currentPrefix = sql.prepare("SELECT * FROM prefix WHERE guild = ?").get(message.guild.id);
-  const Prefix = config.prefix;
-  var getPrefix;
-  if (!currentPrefix) {
-    sql.prepare("INSERT OR REPLACE INTO prefix (serverprefix, guild) VALUES (?,?);").run(Prefix, message.guild.id)
-    getPrefix = Prefix.toString();
-  } else {
-    getPrefix = currentPrefix.serverprefix.toString();
-  }
-
-  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(getPrefix)})\\s*`);
-  if (!prefixRegex.test(message.content)) return;
-
-  const [, matchedPrefix] = message.content.match(prefixRegex);
-
-  const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
-  const commandName = args.shift().toLowerCase();
-
-  const command =
-    client.commands.get(commandName) ||
-    client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
-
-  if (!command) return;
-
-  if (!cooldowns.has(command.name)) {
-    cooldowns.set(command.name, new Discord.Collection());
-  }
-
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || 1) * 1000;
@@ -178,7 +148,6 @@ client.on("message", (message) => {
       );
     }
   }
-
   timestamps.set(message.author.id, now);
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
@@ -189,14 +158,12 @@ client.on("message", (message) => {
     message.reply("There was an error executing that command.").catch(console.error);
   }
 });
-
 // XP Messages 
 client.on("message", message => {
   if (message.author.bot) return;
   if (!message.guild) return;
   let blacklist = sql.prepare(`SELECT id FROM blacklistTable WHERE id = ?`);
   if (blacklist.get(`${message.guild.id}-${message.author.id}`) || blacklist.get(`${message.guild.id}-${message.channel.id}`)) return;
-
   // get level and set level
   const level = client.getLevel.get(message.author.id, message.guild.id)
   if (!level) {
@@ -204,12 +171,9 @@ client.on("message", message => {
     insertLevel.run(`${message.author.id}-${message.guild.id}`, message.author.id, message.guild.id, 0, 0, 0)
     return;
   }
-
   let customSettings = sql.prepare("SELECT * FROM settings WHERE guild = ?").get(message.guild.id);
   let channelLevel = sql.prepare("SELECT * FROM channel WHERE guild = ?").get(message.guild.id);
-
   const lvl = level.level;
-
   let getXpfromDB;
   let getCooldownfromDB;
 

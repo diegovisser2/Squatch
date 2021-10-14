@@ -1,9 +1,6 @@
-const moment = require('moment');
-const Enmap = require('enmap');
 require('moment-duration-format');
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-const { staffrole, adminrole, breakrole } = require('../../config/constants/roles.json');
 
 module.exports = {
   name: 'avatar',

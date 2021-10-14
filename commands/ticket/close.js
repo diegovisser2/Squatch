@@ -1,5 +1,3 @@
-const { Message, Client, MessageAttachment } = require('discord.js');
-const fs = require('fs');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const { ticketCategory } = require('../../config/constants/channel.json');

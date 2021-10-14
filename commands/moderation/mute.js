@@ -5,9 +5,7 @@ const { MessageEmbed } = require('discord.js');
 const { customAlphabet } = require('nanoid')
 require('moment-duration-format');
 const {
-  staffrole,
-  mutedrole,
-  adminrole,
+  staffrole
 } = require('../../config/constants/roles.json');
 const { channelLog } = require('../../config/constants/channel.json');
 const { serverID, Appealserver } = require('../../config/main.json');
