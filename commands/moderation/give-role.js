@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
-const { adminrole } = require('../../config/constants/roles.json');
+const { staffrole } = require('../../config/constants/roles.json');
 
 module.exports = {
   name: 'giverole',
@@ -27,7 +27,7 @@ module.exports = {
       .setColor('RED')
       .setTitle('Error')
       .setDescription('Role doesnt exist');
-    if (!message.member.roles.cache.has(adminrole)) return msg.reply({ embeds: [Prohibited] });
+    if (!message.member.roles.cache.has(staffrole)) return message.reply({ embeds: [Prohibited] });
 
     if (!data.args[0] || !data.args[1]) return message.channel.send({ embeds: [Error] });
 
