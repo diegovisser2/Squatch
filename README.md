@@ -9,7 +9,7 @@ You can customize all of the related channel ids at [/config/constants/channel.j
 
 If you decide to keep the pcbuildhelp.js file at [/events/](https://github.com/MrXez/Squatch/tree/main/events) then you would need to add an api key at [/config/constants/api.json](https://github.com/MrXez/Squatch/blob/main/config/constants/api.json) You can customize some related information at [/config/constants/other.json](https://github.com/MrXez/Squatch/blob/main/config/constants/other.json)
 
-To add your bots token, you can add the token at [/config/credentials.env](https://github.com/MrXez/Squatch/blob/main/config/credentials.env) To change the bots you can change it at [/config/main.json](https://github.com/MrXez/Squatch/blob/main/config/main.json) To change the bots presence you can replace it at [/config/presence.json](https://github.com/MrXez/Squatch/blob/main/config/presence.json)
+To add your bots token, you can add the token at [/config/credentials.env](https://github.com/MrXez/Squatch/blob/main/config/credentials.env) To change some other things about the bot you can change it at [/config/main.json](https://github.com/MrXez/Squatch/blob/main/config/main.json) To change the bots presence you can edit it at [/config/presence.json](https://github.com/MrXez/Squatch/blob/main/config/presence.json)
 
 # [Pull requests](https://github.com/MrXez/Squatch/pulls)
 If you decided to help out with the bot and you found a few lines of code that could cause a problem or think you have a better way of doing something then you're more then welcome to create a pull request and show the code you would like to change and explain the difference
