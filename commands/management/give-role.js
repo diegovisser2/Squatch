@@ -39,6 +39,18 @@ module.exports = {
           || r.id === data.args[1].toString().replace(/[^\w\s]/gi, ''),
       );
 
+      // get position of role - gives you integer
+      const userRolePosition = message.member.roles.highest.position;
+      const selectedRolePosition = roleName.position;
+      
+      if(userRolePosition < selectedRolePosition) {
+        const embed = new MessageEmbed()
+              .setTitle("You don't have access to selected role.")
+              .setColor("RED")
+        
+        return message.channel.send(embed)
+      }
+      
       const alreadyHasRole = member._roles.includes(roleName.id);
 
       if (alreadyHasRole) {
